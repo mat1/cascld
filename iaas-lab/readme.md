@@ -21,10 +21,10 @@ https://aws.amazon.com/de/education/awseducate/
 
 ## Ablauf
 
-Ziel des Labs ist es, die Acution-App in der AWS Cloud zu deplyoen.
+Ziel des Labs ist es, die Bid-App (App für Auktionen) in der AWS Cloud zu deplyoen.
 Dabei sollen EC2 Instanzen verwendet werden ohne Amazon Container Service etc.
 
-![Webapp](webapp.png "Auction App")
+![Webapp](bid-app.png "Bid App")
 
 ### Anwendung auf einer Instanz deployen
 
@@ -50,7 +50,7 @@ sudo usermod -a -G docker ec2-user
 
 4. Abmelden und wieder anmelden, damit die Berechtigungen übernmommen werden
 5. Docker Installation prüfen `docker info`
-6. BID Applikation Starten
+6. Bid Applikation Starten
 
 ```sh
 docker run -p 80:80 -d fluescher/cascld
@@ -111,8 +111,8 @@ Erstellt eine Auto Scaling Group, damit bei vielen Anfragen automatisch eine neu
 ### Bonus: Redis
 
 Das Load Balancing müsste nun funkionieren, aber die Anwendungen haben keine gemeinsame Datenbank und speichern die Daten zur Zeit lokal im Memory.
-Ziel dieser Übung ist es, dass die BID App die Daten in eine gemeinsame Redis Datenbank speichert.
+Ziel dieser Übung ist es, dass die Bid App die Daten in eine gemeinsame Redis Datenbank speichert.
 
-Die BID App unterstützt dies bereits. Siehe: https://github.com/fluescher/cascld-kubernetes/blob/master/sampleapp/docker-compose.yml
+Die Bid App unterstützt dies bereits. Siehe: https://github.com/fluescher/cascld-kubernetes/blob/master/sampleapp/docker-compose.yml
 
 Wahrscheinlich kann Amazon ElastiCache verwendet werden: https://aws.amazon.com/de/elasticache/
