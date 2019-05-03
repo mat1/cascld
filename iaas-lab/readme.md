@@ -7,7 +7,7 @@ Ziel:
 - Umgang mit Amazon EC2 lernen
 - Load Balancing
 
-## Vorbereitung
+# Vorbereitung
 
 Damit ihr dieses Lab durspielen könnt, benötigt ihr ein AWS Account.
 Ein AWS Account kann als Student gratis bestellt werden (keine Kreditkarte benötigt) inkl. Guthaben.
