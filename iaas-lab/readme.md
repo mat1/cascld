@@ -60,13 +60,13 @@ docker run -p 80:80 -d fluescher/cascld
 
 8. Security Group einrichten damit die Anwendung unter Port 80 erreichbar ist.
 
-9. Webseite sollte über das Interent erreichbar sein
+9. Webseite sollte nun über das Interent erreichbar sein
 
 ### Prolbem
 
 Läuft die Anwendung noch, wenn ihr den Server neustartet?
 
-## 2. BID Applikation als Linux Service laufen lassen
+## 2. Bid Applikation als Linux Service laufen lassen
 
 1. Datei `bid-service.service` auf den Server kopieren z.B. mit scp
 
