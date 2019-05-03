@@ -21,8 +21,10 @@ https://aws.amazon.com/de/education/awseducate/
 
 ## Ablauf
 
-Ziel des Labs ist es, die BID-Applikation in der AWS Cloud zu deplyoen.
+Ziel des Labs ist es, die Acution-App in der AWS Cloud zu deplyoen.
 Dabei sollen EC2 Instanzen verwendet werden ohne Amazon Container Service etc.
+
+![Webapp](webapp.png "Auction App")
 
 ### Anwendung auf einer Instanz deployen
 
