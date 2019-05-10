@@ -9,7 +9,7 @@ Ziel:
 
 ## Vorbereitung
 
-Damit ihr dieses Lab durspielen könnt, benötigt ihr ein AWS Account.
+Damit ihr dieses Lab durchspielen könnt, benötigt ihr ein AWS Account.
 Ein AWS Account kann als Student gratis bestellt werden inkl. Guthaben (es wird keine Kreditkarte benötigt).
 Es dauert ca. 2 Tage, bis euer Account aktiviert wird.
 
@@ -22,7 +22,7 @@ Mehr dazu unter https://aws.amazon.com/de/education/awseducate/
 ## Ablauf
 
 Ziel des Labs ist es, die Bid-App (App für Auktionen) in der AWS Cloud zu deplyoen.
-Dabei sollen EC2 Instanzen verwendet werden ohne Amazon Container Service etc.
+Dabei sollen EC2 Instanzen verwendet werden ohne Amazon Container Service oder andere Services.
 
 ![Webapp](bid-app.png "Bid App")
 
@@ -31,7 +31,7 @@ Dabei sollen EC2 Instanzen verwendet werden ohne Amazon Container Service etc.
 1. EC2 Instanz erstellen z.B. Amazon Linux 2 AMI
 2. Per SSH auf Instanz einloggen.
    Unter Windows z.B. mit PuTTY https://docs.aws.amazon.com/de_de/AWSEC2/latest/UserGuide/putty.html oder Git Bash
-3. Docker auf der EC2 Instanz insatllieren
+3. Docker auf der EC2 Instanz installieren
 
 ```sh
 # Aktualisieren der installierten Pakete und des Caches der Paketverwaltung auf der Instanz
@@ -48,7 +48,7 @@ sudo systemctl start docker
 sudo usermod -a -G docker ec2-user
 ```
 
-4. Abmelden und wieder anmelden, damit die Berechtigungen übernmommen werden
+4. Abmelden und wieder anmelden, damit die Berechtigungen übernommen werden
 5. Docker Installation prüfen `docker info`
 6. Bid Applikation Starten
 
@@ -62,7 +62,7 @@ docker run -p 80:80 -d fluescher/cascld
 
 9. Webseite sollte nun über das Interent erreichbar sein
 
-### Prolbem
+### Problem
 
 Läuft die Anwendung noch, wenn ihr den Server neustartet?
 
