@@ -13,8 +13,7 @@ Kopiere die Projekt-ID in einen Texteditor. Die Projekt-ID muss bei den Funktion
 
 ## 2. Datastore erstellen
 
-Leider kann man aus einer Google Function nicht auf Redis as a Service zugreifen (Stand 31. Mai 2019).
-Darum werden die Daten in dieser Übung in einem Google Datastore (NoSQL Datenbank) gespeichert.
+Die Daten in dieser Übung werden in einem Google Datastore (NoSQL Datenbank) gespeichert, weil dies einfacher ist, als der Zugriff auf Redis.
 
 1. Suche nach Datastore
 2. Erstelle ein Google Datastore (Select `DATASTORE MODE`)
