@@ -37,7 +37,7 @@ docker push gcr.io/PROJECTID/bid-app
 4. Service name `bid-app`
 5. Allow unauthenticated invocations aktivieren
 
-Nach dem Erstellen des Service sollte die Anwendung über das Internet erreichbar sein.
+Nach dem Erstellen des Services sollte die Anwendung über das Internet erreichbar sein.
 
 Mehr zu Google Cloud Run unter: https://cloud.google.com/run/docs/quickstarts/build-and-deploy
 
