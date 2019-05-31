@@ -1,7 +1,6 @@
-const getHighestBidUrl =
-  "https://us-central1-cascld.cloudfunctions.net/get-bids";
+const getHighestBidUrl = "https://YOUR-CLOUD-FUNCTION-URL";
 
-const bidUrl = "https://us-central1-cascld.cloudfunctions.net/bid";
+const bidUrl = "https://YOUR-CLOUD-FUNCTION-URL";
 
 const getHighestBid = () => {
   fetch(getHighestBidUrl)
