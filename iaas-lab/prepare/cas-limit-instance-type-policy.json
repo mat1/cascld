@@ -1,0 +1,42 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Deny",
+      "Action": "ec2:RunInstances",
+      "Resource": "*",
+      "Condition": {
+        "ForAnyValue:StringNotLike": {
+          "ec2:InstanceType": ["t2.nano", "t2.micro"]
+        }
+      }
+    },
+    {
+      "Effect": "Deny",
+      "Action": [
+        "ec2:DescribeReservedInstances",
+        "ec2:ModifyReservedInstances",
+        "ec2:PurchaseReservedInstancesOffering"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Deny",
+      "Action": [
+        "elasticache:DescribeReservedCacheNodesOfferings",
+        "elasticache:PurchaseReservedCacheNodesOffering"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Deny",
+      "Action": "elasticache:CreateCacheCluster",
+      "Resource": "*",
+      "Condition": {
+        "ForAnyValue:StringNotLike": {
+          "elasticache:CacheNodeType": ["cache.t2.micro"]
+        }
+      }
+    }
+  ]
+}

@@ -92,7 +92,7 @@ sudo systemctl enable /home/ec2-user/bid-service.service
 
 3. Prüfen ob ihr mit dem Browser auf die Webseite kommt. Ihr solltet jezt die Applikation auf zwei Instanzen am laufen haben.
 
-4. Load Balancer erstellen
+4. Application Load Balancer erstellen
 
 5. Anschliessend solltet ihr bei jedem Aufruf abwechslungsweise auf die Eine oder die Andere Instanz geroutet werden.
 
@@ -109,6 +109,14 @@ Dieses Problem wird in der Bonus Übung (Redis) gelöst.
 
 Erstellt eine Auto Scaling Group, damit bei vielen Anfragen automatisch eine neue Instanz gestartet wird und wenn es wieder weniger Anfragen gibt, automatisch eine Instanz beendet wird.
 
+Ihr könnt z.B. mit ApacheBench Last generieren: https://httpd.apache.org/docs/2.4/programs/ab.html
+
+```sh
+ab -n 10000 -c 10 http://YOURWEBSITE.COM/
+```
+
+Beobachtet was passiert, wenn ihr Last generiert und die Last wieder zurück geht.
+
 ## 5. Bonus: Redis
 
 Das Load Balancing müsste nun funkionieren, aber die Anwendungen haben keine gemeinsame Datenbank und speichern die Daten zur Zeit lokal im Memory. Ziel dieser Übung ist es, dass die Bid App die Daten in eine gemeinsame Redis Datenbank speichert.
@@ -116,3 +124,25 @@ Das Load Balancing müsste nun funkionieren, aber die Anwendungen haben keine ge
 Bei der Bid App kann über eine Umgebungsvariable gesteuert werden, welche Datenbank verwendet werden soll. Siehe https://github.com/fluescher/cascld-kubernetes/blob/master/sampleapp/docker-compose.yml
 
 Um Redis in der AWS Cloud zu betreiben, könnt ihr z.B. Amazon ElastiCache verwenden https://aws.amazon.com/de/elasticache/
+Dabei müsst ihr beim Erstellen **cache.t2.micro** als Node type wählen.
+
+Mithilfe von Netcat `nc` könnt ihr die Verbindung von der EC2 Instanz zu eurem Redis Cluster testen:
+
+```sh
+nc -v YOUR-REDIS-CLUSTER.cache.amazonaws.com 6379
+# PING eingeben und Enter --> Als Antwort kommt PONG
+```
+
+Die Bid App könnt ihr mit diesen Parameter starten, damit eine Verbindung zum Redis Cluster hergestellt wird.
+
+```sh
+docker run -e REDIS_HOST=YOUR-REDIS-CLUSTER.cache.amazonaws.com -p 80:80 -d fluescher/cascld
+```
+
+Wenn ihr die Verbindung erfolgreich getestet habt, könnt ihr die Datei `bid-service.service` anpassen, damit die Anwendung beim Start eine Verbindungs zum Redis Cluster herstellt.
+Zur Kontrolle den Server einfach kurz neustarten.
+
+Danach könnt ihr ein neues AMI und eine neue Launch Configuration erstellen.
+Die neue Launch Configuration müsst ihr in der Auto Scaling Group entsprechened eintragen.
+Kontrolliert, dass sowohl der Redis Cluster aber auch die EC2 Instanzen in unterschiedlichen Availability Zones laufen
+Nun solltet ihr eine hochverfügbare Bid App haben die automatisch hoch und runter skaliert und die Gebote im Redis Cluster speichert.
