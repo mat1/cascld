@@ -27,16 +27,6 @@
         "elasticache:PurchaseReservedCacheNodesOffering"
       ],
       "Resource": "*"
-    },
-    {
-      "Effect": "Deny",
-      "Action": "elasticache:CreateCacheCluster",
-      "Resource": "*",
-      "Condition": {
-        "ForAnyValue:StringNotLike": {
-          "elasticache:CacheNodeType": ["cache.t2.micro"]
-        }
-      }
     }
   ]
 }
