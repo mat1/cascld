@@ -6,3 +6,12 @@
 
 3. Wildcard Zertifikat im AWS Certificate Manager erstellen
 
+## Übung Besprechung
+
+- Security Groups
+- Bastion Host
+- Amazon Cognito für Authentificaton
+- Protect Data at Rest & Transport:
+    - HTTPS
+    - Redis 
+
