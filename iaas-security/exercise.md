@@ -24,7 +24,7 @@ Anschliessend könnt ihr eure Anwendung über https:// Aufrufen. Im Browser soll
 
 AWS Cloud Trail zeichnet auf, wer wann was geändert hat in der AWS Cloud.
 
-Versucht folgende Fragen zu beantworten:
+Versucht mit AWS Cloud Trail folgende Fragen zu beantworten:
 
 - Wer hat zuletzt eine neue EC2 Instanz gestartet?
 - Wer hat zuletzt eine Security Group angepasst? Was wurde geändert?
