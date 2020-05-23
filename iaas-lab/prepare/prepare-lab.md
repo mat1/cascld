@@ -10,6 +10,7 @@
 
 AmazonEC2FullAccess
 AmazonElastiCacheFullAccess
+AWSCloudTrailReadOnlyAccess
 Neue Policy erstellen `cas-limit-instance-type.json` und der Gruppe zuweisen
 
 5. CAS Users erstellen
