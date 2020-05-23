@@ -27,6 +27,11 @@
         "elasticache:PurchaseReservedCacheNodesOffering"
       ],
       "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": ["iam:ListServerCertificates", "acm:ListCertificates"],
+      "Resource": "*"
     }
   ]
 }
