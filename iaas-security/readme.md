@@ -5,7 +5,7 @@ Natürlich gibt es dadurch viele neue Anforderungen:
 
 - Neu sollen nur noch authentifizierte Benutzer die Bid App verwenden dürfen
 - Das ganze Bid App Team soll per SSH Zugriff auf die Server haben aber nur aus dem Firmennetz
-- Die Anwendung und die Daten soll möglichst sicher sein
+- Die Anwendung und die Daten sollen möglichst sicher sein
 - Die App muss auf AWS laufen
 
 ## Aufgabe
