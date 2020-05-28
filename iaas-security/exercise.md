@@ -36,8 +36,6 @@ Versucht mit AWS Cloud Trail folgende Fragen zu beantworten:
 - Wer hat zuletzt eine neue EC2 Instanz gestartet?
 - Wer hat zuletzt eine Security Group angepasst? Was wurde geändert?
 
-hello-bluber-hello
-
 ## Bonus - Secure Your Infrastructure - Bastion Host
 
 Im Moment kann man sich aus dem Internet per SSH direkt auf die Bid App EC2 Instanzen verbinden. Ziel dieser Übung ist es, ein Bastion Host (Jumphost) zu erstellen.
