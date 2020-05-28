@@ -16,3 +16,5 @@ Neue Policy erstellen `cas-limit-instance-type.json` und der Gruppe zuweisen
 5. CAS Users erstellen
 
 6. CSV Export
+
+7. AWS Regions aktivieren
