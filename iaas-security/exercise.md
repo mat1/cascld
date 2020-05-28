@@ -13,7 +13,16 @@ Ihr könnt dazu das Wildcard Zertifikat `*.cascld.com` verwenden. Dieses könnt 
 
 Anschliessend könnt ihr eure Anwendung über https:// Aufrufen. Im Browser solltet ihr eine Warnung sehen, dass das Zertifikat ungültig ist. Warum ist dies so?
 
-## Protect Data at Rest & at Transport - Redis
+## Audit & Überwachung
+
+AWS Cloud Trail zeichnet auf, wer wann was geändert hat in der AWS Cloud.
+
+Versucht mit AWS Cloud Trail folgende Fragen zu beantworten:
+
+- Wer hat zuletzt eine neue EC2 Instanz gestartet?
+- Wer hat zuletzt eine Security Group angepasst? Was wurde geändert?
+
+## Bonus: Protect Data at Rest & at Transport - Redis
 
 Für diese übung müsst ihr die Bonus Übung "Redis" vom IaaS Lab gelöst haben. Aktuell werden die Daten zwischen der Bid App und dem Redis Cluster unverschlüsselt übertragen. Zudem werden die Daten im Redis Cluster unverschlüsselt auf die Disk gespeichert.
 
@@ -26,19 +35,3 @@ Konfiguriert die Bid App, damit die Verbindung zum neuen Redis Cluster hergestel
 ```sh
 docker run -p 8080:80 -e REDIS_HOST=master.bid-redis-secure.f76nxh.euc1.cache.amazonaws.com -e REDIS_AUTH_TOKEN=MY-REDIS-AUTH-TOKEN fluescher/cascld:latest
 ```
-
-## Audit & Überwachung
-
-AWS Cloud Trail zeichnet auf, wer wann was geändert hat in der AWS Cloud.
-
-Versucht mit AWS Cloud Trail folgende Fragen zu beantworten:
-
-- Wer hat zuletzt eine neue EC2 Instanz gestartet?
-- Wer hat zuletzt eine Security Group angepasst? Was wurde geändert?
-
-## Bonus - Secure Your Infrastructure - Bastion Host
-
-Im Moment kann man sich aus dem Internet per SSH direkt auf die Bid App EC2 Instanzen verbinden. Ziel dieser Übung ist es, ein Bastion Host (Jumphost) zu erstellen.
-Anschliessend sollte man nur noch über diesen Bastion Host auf die Bid App Server zugreiffen können.
-
-https://docs.aws.amazon.com/quickstart/latest/linux-bastion/welcome.html
