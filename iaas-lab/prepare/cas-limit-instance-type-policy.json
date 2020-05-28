@@ -7,7 +7,7 @@
       "Resource": "*",
       "Condition": {
         "ForAnyValue:StringNotLike": {
-          "ec2:InstanceType": ["t2.nano", "t2.micro"]
+          "ec2:InstanceType": ["t2.nano", "t2.micro", "t3.nano", "t3.micro"]
         }
       }
     },
