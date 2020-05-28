@@ -6,9 +6,9 @@
 
 3. Wildcard Zertifikat im AWS Certificate Manager erstellen
 
-4. Zertifikat in allen Regionen hinzufügen!
+4. Zertifikat in allen Regionen hinzufügen! Zertfikat ist pro Region.
 
 ## Feedback
 
 - Redis Übung muss gemacht sein für Übung mit Redis
-- Outlook: Infrastructure as Code / Kein SSH auf Hosts
+- Outlook: Infrastructure as Code / ZIEL kein SSH auf Hosts mehr
