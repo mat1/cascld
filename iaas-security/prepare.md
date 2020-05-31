@@ -12,3 +12,4 @@
 
 - Redis Übung muss gemacht sein für Übung mit Redis
 - Outlook: Infrastructure as Code / ZIEL kein SSH auf Hosts mehr
+- Security Groups Outbound Rules prüfen
