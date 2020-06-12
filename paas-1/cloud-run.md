@@ -20,6 +20,9 @@ gcloud auth configure-docker
 3. Dockerimage in die Cloud Registry pushen
 
 ```sh
+# Aktiviere die Container Registry
+gcloud services enable containerregistry.googleapis.com
+
 # Hole das Image vom Dockerhub
 docker pull fluescher/cascld
 
@@ -36,20 +39,55 @@ docker push gcr.io/PROJECTID/bid-app
 3. Container image url `gcr.io/PROJECTID/bid-app`
 4. Service name `bid-app`
 5. Allow unauthenticated invocations aktivieren
+6. Region `europe-west1`
 
 Nach dem Erstellen des Services sollte die Anwendung über das Internet erreichbar sein.
 
-Mehr zu Google Cloud Run unter: https://cloud.google.com/run/docs/quickstarts/build-and-deploy
+Mehr zu Google Cloud Run unter: https://cloud.google.com/run
 
-Leider ist der Zugriff von der fully managed version von Cloud Run auf den Cloud Memorystore noch nicht möglich (Stand 31.05.2019).
+## 3. Redis Memorystore
 
-Mehr dazu unter: https://cloud.google.com/run/docs/using-gcp-services
+In der Google Cloud Shell
 
-## Bonus: 3. Pricing
+```sh
+# Aktiviere Redis API
+gcloud services enable redis.googleapis.com
 
-Finde heraus, wie viel es pro Monat kostet, die Bid App in dieser Art zu betreiben.
+# Erstelle ein Redis Cluster (selbe Region wie der Cloud Run Container)
+gcloud redis instances create bid-app-redis --region europe-west1
+```
+
+## 4. Serverless VPC Access erstellen
+
+Damit Cloud Run auf den Memorystore zugreiffen kann, benötigen wir Serverless VPC Access (https://cloud.google.com/vpc/docs/configure-serverless-vpc-access?hl=en).
+
+```sh
+# Aktiviere VPC Access
+gcloud services enable vpcaccess.googleapis.com
+
+gcloud compute networks vpc-access connectors create bid-app-connector --region europe-west1 --range 10.8.0.0/28
+```
+
+Anschliessend kann die Bid App angepasst werden, dass dieser Connector verwendet wird. Zudem muss die Umgebungsvariable `REDIS_HOST` gesetzt werden.
+
+## Bonus: 5. Lasttest
+
+Generie Last und beobachte, wie sich die Anwendung verhält.
+Ihr könnt z.B. mit ApacheBench Last generieren: https://httpd.apache.org/docs/2.4/programs/ab.html
+
+```sh
+abs -n 30000 -c 300 http://YOURWEBSITE.COM/
+```
+
+## Bonus: 6. Pricing
+
+Finde heraus, wie viel es pro Monat kostet, die Bid App in dieser Art zu betreiben (ohne Redis Cluster).
 
 Die Preisberechnung basierd auf folgenden Angaben:
 
 - Pro Tag wird die Webseite 400'000 mal aufgerufen
 - Pro Tag werden 10'000 Gebote abgegeben
+
+## Unofficial FAQ for Google Cloud Run
+
+https://github.com/ahmetb/cloud-run-faq
