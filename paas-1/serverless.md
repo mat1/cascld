@@ -9,7 +9,6 @@ Das Ziel dieser Übung:
 ## 1. Projekt erstellen
 
 Erstelle ein neues Google Cloud Projekt mit dem Namen `cascld`.
-Kopiere die Projekt-ID in einen Texteditor. Die Projekt-ID muss bei den Funktionen etc. jeweils eingesetzt werden.
 
 ## 2. Datastore erstellen
 
@@ -30,34 +29,35 @@ In dieser Übung werden zwei Funktionen erstellt:
 
 1. Suche nach Cloud Function
 2. Erstelle eine Funktion mit dem Namen `get-highest-bid`
-3. Runtime `Node.js 8`
-4. Der Quellcode für die Funktion ist unten aufgeführt:
+3. `Allow unauthenticated invocations`
+4. Runtime: `Node.js 10`
+5. Der Quellcode für die Funktion ist unten aufgeführt:
 
 **index.js**
 
 ```js
 const { Datastore } = require("@google-cloud/datastore");
-const PROJECTID = "YOUR-PROJECT-ID";
 
-const datastore = new Datastore({
-  projectId: PROJECTID
-});
+// Verwendet Datastore des Projekts
+const datastore = new Datastore();
 
-exports.getHighestBid = async function(req, res) {
+exports.getHighestBid = async (req, res) => {
+  console.log("getHighestBid");
+
   const key = datastore.key(["bids", "bid"]);
 
-  return datastore.get(key, (err, entity) => {
-    let result = null;
+  const entities = await datastore.get(key);
 
-    if (entity == null) {
-      result = { highest: 0, hostname: "Google Functions" };
-    } else {
-      result = { highest: entity.bid, hostname: "Google Functions" };
-    }
-    res.set("Access-Control-Allow-Origin", "*");
-    res.set("Access-Control-Allow-Methods", "GET, POST");
-    res.status(200).send(result);
-  });
+  console.log("Entities from datastore", entities);
+
+  const result = {
+    highest: entities[0] == null ? 0 : entities[0].bid,
+    hostname: "Google Functions",
+  };
+
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "GET, POST");
+  res.status(200).send(result);
 };
 ```
 
@@ -68,15 +68,15 @@ exports.getHighestBid = async function(req, res) {
   "name": "sample-http",
   "version": "0.0.1",
   "dependencies": {
-    "@google-cloud/datastore": "4.0.0",
+    "@google-cloud/datastore": "6.0.0",
     "semver": "^5.5.1"
   }
 }
 ```
 
 5. Function to execute `getHighestBid`
-6. Location `europe-west1`
-7. Teste die Funktion (auf die erstellte Funktion klicken und den Testing Tab öffnen)
+6. Region: `europe-west6` Schweiz :)
+7. Teste die Funktion
 
 Die Funktion sollte folgendes zurückgeben:
 
@@ -94,21 +94,18 @@ Der Code dazu ist unten aufgeführt. Bei Function to execute muss `bid` eingetra
 
 ```js
 const { Datastore } = require("@google-cloud/datastore");
-const PROJECTID = "YOUR-PROJECT-ID";
 
-const datastore = new Datastore({
-  projectId: PROJECTID
-});
+const datastore = new Datastore();
 
-exports.bid = async function(req, res) {
+exports.bid = async (req, res) => {
   const bid = req.body;
 
-  console.log(bid);
+  console.log("Bid from user:", bid);
 
   const key = datastore.key(["bids", "bid"]);
   const entity = {
     key: key,
-    data: bid
+    data: bid,
   };
 
   await datastore.save(entity);
@@ -127,7 +124,7 @@ exports.bid = async function(req, res) {
   "name": "sample-http",
   "version": "0.0.1",
   "dependencies": {
-    "@google-cloud/datastore": "4.0.0",
+    "@google-cloud/datastore": "6.0.0",
     "semver": "^5.5.1"
   }
 }
@@ -147,7 +144,7 @@ Die Funktion sollte folgenden Output generieren:
 
 ## 4. Bid Webseite
 
-Die beiden Google Cloud Functions sollten nun über das Internet erreichbar sein. Nun gehts darum, die Bid Webseite im Internet verfügbar zu machen. Die Bid Webseite greift über HTTP Aufrufe auf die beiden Funktionen zu.
+Die beiden Google Cloud Functions sollten nun über das Internet erreichbar sein. Nun gehts darum, die Bid Webseite im Internet verfügbar zu machen. Die Bid Webseite greift über HTTP Requests auf die beiden Funktionen zu.
 
 Die Webseite wird in einem Google Bucket gehostet (ähnlich wie Amazon S3 Bucket).
 

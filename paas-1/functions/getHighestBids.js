@@ -1,23 +1,23 @@
-const {Datastore} = require('@google-cloud/datastore');
-const PROJECTID = 'cascld';
+const { Datastore } = require("@google-cloud/datastore");
 
-const datastore = new Datastore({
-    projectId: PROJECTID
-});
+// Verwendet Datastore des Projekts
+const datastore = new Datastore();
 
-exports.getHighestBid = async function(req, res) {  
+exports.getHighestBid = async (req, res) => {
+  console.log("getHighestBid");
+
   const key = datastore.key(["bids", "bid"]);
-    
-  return datastore.get(key, (err, entity) => {
-    let result = null;
-    
-    if (entity == null) {
-      	result = { highest: 0, hostname: "Google Functions" };
-    } else {
-      	result = { highest: entity.bid, hostname: "Google Functions" };
-    }
-    res.set('Access-Control-Allow-Origin', "*")
-  	res.set('Access-Control-Allow-Methods', 'GET, POST')
-    res.status(200).send(result);
-  });
+
+  const entities = await datastore.get(key);
+
+  console.log("Entities from datastore", entities);
+
+  const result = {
+    highest: entities[0] == null ? 0 : entities[0].bid,
+    hostname: "Google Functions",
+  };
+
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "GET, POST");
+  res.status(200).send(result);
 };

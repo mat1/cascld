@@ -1,25 +1,28 @@
 const { Datastore } = require("@google-cloud/datastore");
-const PROJECTID = "cascld";
 
-const datastore = new Datastore({
-  projectId: PROJECTID
-});
+const datastore = new Datastore();
 
-exports.bid = async function(req, res) {
+exports.bid = async (req, res) => {
+  // Allow CORS
+  res.set("Access-Control-Allow-Origin", "*");
+
+  if (req.method === "OPTIONS") {
+    res.set("Access-Control-Allow-Methods", "*");
+    res.set("Access-Control-Allow-Headers", "*");
+    return res.status(204).send("");
+  }
+
   const bid = req.body;
 
-  console.log(bid);
+  console.log("Bid from user:", bid);
 
   const key = datastore.key(["bids", "bid"]);
   const entity = {
     key: key,
-    data: bid
+    data: bid,
   };
 
   await datastore.save(entity);
 
-  res.set("Access-Control-Allow-Origin", "*");
-  res.set("Access-Control-Allow-Methods", "GET, POST");
-  res.set("Access-Control-Allow-Headers", "Content-Type");
   res.status(200).send(bid);
 };

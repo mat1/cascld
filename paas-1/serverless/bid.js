@@ -1,11 +1,10 @@
 const getHighestBidUrl = "https://YOUR-CLOUD-FUNCTION-URL";
-
 const bidUrl = "https://YOUR-CLOUD-FUNCTION-URL";
 
 const getHighestBid = () => {
   fetch(getHighestBidUrl)
-    .then(r => r.json())
-    .then(r => {
+    .then((r) => r.json())
+    .then((r) => {
       const bidApp = document.getElementById("bid-app");
 
       const min = r.highest + 1;
@@ -26,14 +25,14 @@ const bid = () => {
     method: "POST",
     body: JSON.stringify({ bid: Number(bid) }),
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   })
-    .then(_ => {
+    .then((_) => {
       console.log("Success");
       getHighestBid();
     })
-    .catch(error => console.error("Error:", error));
+    .catch((error) => console.error("Error:", error));
 };
 
 getHighestBid();
