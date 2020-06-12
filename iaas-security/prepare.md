@@ -12,4 +12,8 @@
 
 - Redis Übung muss gemacht sein für Übung mit Redis
 - Outlook: Infrastructure as Code / ZIEL kein SSH auf Hosts mehr
-- Security Groups Outbound Rules prüfen
+- Security Groups Outbound Rules prüfen / Security Groups gibt es ein Logging, wenn keine Verbindung hergestellt werden kann?
+
+## After Lab
+
+- Delete AWS Account
