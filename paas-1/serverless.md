@@ -150,7 +150,7 @@ Die Webseite wird in einem Google Bucket gehostet (ähnlich wie Amazon S3 Bucket
 
 ### Webseite Google Function URLs anpassen
 
-Lade die Dateien im Ordner [serverless](serverless) herunter.
+Lade die Dateien im Ordner [website](serverless/website) herunter.
 
 1. Passe die URLs in der Datei bid.js an
 
