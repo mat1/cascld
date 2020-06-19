@@ -11,3 +11,8 @@ gcloud run deploy bid-app-db-2 \
   --set-env-vars MYSQL_UNIX_SOCKET="/cloudsql/cascld2020:europe-west1:bid-db",MYSQL_PASSWORD="password123" \
   --allow-unauthenticated
 ```
+
+## Connection Handling
+
+Aktuell ist das Datenbank Connection Handling nicht ideal.
+Idealerweise würde man einen Connection Pool verwenden: https://cloud.google.com/sql/docs/mysql/manage-connections. Dazu müsste aber die Bid App angepasst werden.
