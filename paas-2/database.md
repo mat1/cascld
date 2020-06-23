@@ -6,7 +6,7 @@ Dazu soll Google Cloud SQL verwendet werden: https://cloud.google.com/sql
 
 ## 1. Datenbank erstellen
 
-Erstelle eine neue hochverfügbare Datenbank. Dazu musst du folgende Befehele in der Google Cloud Shell ausführen:
+Erstelle eine neue hochverfügbare Datenbank. Dazu musst du folgende Befehle in der Google Cloud Shell ausführen:
 
 ```sh
 gcloud services enable sql-component.googleapis.com
@@ -75,7 +75,7 @@ gcloud sql instances describe bid-db
 
 Sollte `availabilityType`=`REGIONAL` zurückgeben.
 
-2. Failover manuell auslösen 
+2. Failover manuell auslösen
 
 ```sh
 gcloud sql instances failover bid-db
@@ -98,5 +98,3 @@ In dieser Übung geht es darum, ein Backup der Datenbank zu erstellen und wieder
 4. Stelle die Datenbank vom zuvor erstellen Backup wieder her
 
 Nun sollte das Höchstgebot wieder den Wert von Schritt 1 haben.
-
-
