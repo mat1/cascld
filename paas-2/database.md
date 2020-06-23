@@ -67,7 +67,7 @@ Eine Dokumentation der Cloud Run Befehle findet ihr hier: https://cloud.google.c
 
 Im Schritt 2 haben wir eine hochverfügabe Datenbank erstellt. Nun wollen wir dies auch Testen, um sicher zugehen das unsere Anwendung mit einem Failover umgehen kann.
 
-1. Prüfen ob Instanz hochverfügbar ist
+1. Prüfen ob die Datenbank Instanz hochverfügbar ist
 
 ```sh
 gcloud sql instances describe bid-db
