@@ -63,3 +63,40 @@ Die Dokumentation wie von Cloud Run auf Cloud SQL zugegriffen werden kann findet
 
 Eine Dokumentation der Cloud Run Befehle findet ihr hier: https://cloud.google.com/sdk/gcloud/reference/run
 
+## 4. Bonus: Test Failover
+
+Im Schritt 2 haben wir eine hochverfügabe Datenbank erstellt. Nun wollen wir dies auch Testen, um sicher zugehen das unsere Anwendung mit einem Failover umgehen kann.
+
+1. Prüfen ob Instanz hochverfügbar ist
+
+```sh
+gcloud sql instances describe bid-db
+```
+
+Sollte `availabilityType`=`REGIONAL` zurückgeben.
+
+2. Failover manuell auslösen 
+
+```sh
+gcloud sql instances failover bid-db
+```
+
+3. Prüfe ob die Bid App während dem Failover erreichbar ist z.B. mit Apache Bench oder mit dem Browser
+
+Mehr zum Thema Failover und HA-Setup unter: https://cloud.google.com/sql/docs/mysql/high-availability
+
+## 5. Bonus: Backup & Restore
+
+In dieser Übung geht es darum, ein Backup der Datenbank zu erstellen und wieder herzustellen.
+
+1. Merke dir das aktuelle Höchstgebot in der Bid App
+
+2. Erstelle ein Backup der Datenbank in der Google Cloud Console (UI)
+
+3. Erhöhe das Höchstgebot
+
+4. Stelle die Datenbank vom zuvor erstellen Backup wieder her
+
+Nun sollte das Höchstgebot wieder den Wert von Schritt 1 haben.
+
+

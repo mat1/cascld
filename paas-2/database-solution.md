@@ -12,6 +12,16 @@ gcloud run deploy bid-app-db-2 \
   --allow-unauthenticated
 ```
 
+## 4. Bonus: Test Failover
+
+Bid App ist kurz nicht erreichbar. Failover in den Logs sichtbar.
+
+HA: https://cloud.google.com/sql/docs/mysql/high-availability
+Replication: https://cloud.google.com/sql/docs/mysql/replication
+
+z.B. Seperate Read Only Datenbank für Reporting.
+In der Regel asychnrone Updates bei MySQL (kurzes Delay).
+
 ## Connection Handling
 
 Aktuell ist das Datenbank Connection Handling nicht ideal.

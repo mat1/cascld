@@ -76,7 +76,7 @@ Generie Last und beobachte, wie sich die Anwendung verhält.
 Ihr könnt z.B. mit ApacheBench Last generieren: https://httpd.apache.org/docs/2.4/programs/ab.html
 
 ```sh
-abs -n 30000 -c 300 http://YOURWEBSITE.COM/
+ab -n 30000 -c 300 http://YOURWEBSITE.COM/
 ```
 
 ## Bonus: 6. Pricing
