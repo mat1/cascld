@@ -2,6 +2,12 @@
 
 ## 3. Bid App mit Datenbank verbinden
 
+Wenn über das UI muss google cloud sql admin noch aktiviert werden.
+
+```sh
+gcloud services enable sqladmin.googleapis.com
+```
+
 ```sh
 gcloud run deploy bid-app-db-2 \
   --image gcr.io/cascld2020/bid-app \
