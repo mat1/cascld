@@ -11,12 +11,10 @@
 6. VPC
 7. Memorystore
 
-
 ## Bonus Pricing
 
 https://cloud.google.com/products/calculator#id=869227ce-cd78-41e3-bbda-a14fca26e876
 
-Serverless VPC gibt es nicht..
+Serverless VPC gibt es nicht zur Auswahl
 
 https://cloud.google.com/vpc/docs/configure-serverless-vpc-access#pricing
-

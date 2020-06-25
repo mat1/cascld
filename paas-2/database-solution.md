@@ -31,4 +31,5 @@ In der Regel asychnrone Updates bei MySQL (kurzes Delay).
 ## Connection Handling
 
 Aktuell ist das Datenbank Connection Handling nicht ideal.
-Idealerweise würde man einen Connection Pool verwenden: https://cloud.google.com/sql/docs/mysql/manage-connections. Dazu müsste aber die Bid App angepasst werden.
+Idealerweise würde man einen Connection Pool verwenden: https://cloud.google.com/sql/docs/mysql/manage-connections. 
+Dazu müsste aber die Bid App angepasst werden.
