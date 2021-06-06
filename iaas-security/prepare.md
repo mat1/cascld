@@ -12,7 +12,8 @@
 
 - Redis Übung muss gemacht sein für Übung mit Redis
 - Outlook: Infrastructure as Code / ZIEL kein SSH auf Hosts mehr
-- Security Groups Outbound Rules prüfen / Security Groups gibt es ein Logging, wenn keine Verbindung hergestellt werden kann?
+- Zertifikat in allen Regionen hinzufügen
+- Cloud Trail Link auf Event History nicht das Versucht wird, ein neuer Trail zu erstellen
 
 ## After Lab
 
