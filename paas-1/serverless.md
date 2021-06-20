@@ -29,9 +29,10 @@ In dieser Übung werden zwei Funktionen erstellt:
 
 1. Suche nach Cloud Function
 2. Erstelle eine Funktion mit dem Namen `get-highest-bid`
-3. `Allow unauthenticated invocations`
-4. Runtime: `Node.js 10`
-5. Der Quellcode für die Funktion ist unten aufgeführt:
+3. Region: `europe-west6` Schweiz :)
+4. `Allow unauthenticated invocations`
+5. Runtime: `Node.js 14`
+6. Der Quellcode für die Funktion ist unten aufgeführt:
 
 **index.js**
 
@@ -74,9 +75,8 @@ exports.getHighestBid = async (req, res) => {
 }
 ```
 
-5. Function to execute `getHighestBid`
-6. Region: `europe-west6` Schweiz :)
-7. Teste die Funktion
+7. Entry point: `getHighestBid`
+8. Teste die Funktion
 
 Die Funktion sollte folgendes zurückgeben:
 
@@ -88,7 +88,7 @@ Die Funktion sollte folgendes zurückgeben:
 
 Erstelle analog zur `get-highest-bid` Funktion eine Funktion mit dem Namen `bid`.
 
-Der Code dazu ist unten aufgeführt. Bei Function to execute muss `bid` eingetragen werden.
+Der Code dazu ist unten aufgeführt. Bei Function to execute (Entry point) muss `bid` eingetragen werden.
 
 **index.js**
 
