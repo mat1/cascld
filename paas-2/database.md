@@ -13,7 +13,7 @@ gcloud services enable sql-component.googleapis.com
 
 # Datenbank erstellen
 # High Availabilty - Automatic failover to another zone within your selected region. Recommended for production instances. Increases cost.
-gcloud sql instances create bid-db --tier=db-n1-standard-2 --region=europe-west1 --availability-type=REGIONAL --enable-bin-log
+gcloud sql instances create bid-db --tier=db-n1-standard-2 --region=europe-west6 --availability-type=REGIONAL --enable-bin-log
 
 # Datenbank Root Account
 gcloud sql users set-password root --host=% --instance=bid-db --password=root123
