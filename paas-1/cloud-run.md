@@ -39,7 +39,7 @@ docker push gcr.io/PROJECTID/bid-app
 3. Container image url `gcr.io/PROJECTID/bid-app`
 4. Service name `bid-app`
 5. Allow unauthenticated invocations aktivieren
-6. Region `europe-west1`
+6. Region `europe-west6`
 
 Nach dem Erstellen des Services sollte die Anwendung über das Internet erreichbar sein.
 
@@ -54,7 +54,7 @@ In der Google Cloud Shell
 gcloud services enable redis.googleapis.com
 
 # Erstelle ein Redis Cluster (selbe Region wie der Cloud Run Container)
-gcloud redis instances create bid-app-redis --region europe-west1
+gcloud redis instances create bid-app-redis --region europe-west6
 ```
 
 ## 4. Serverless VPC Access erstellen
@@ -65,7 +65,7 @@ Damit Cloud Run auf den Memorystore zugreiffen kann, benötigen wir Serverless V
 # Aktiviere VPC Access
 gcloud services enable vpcaccess.googleapis.com
 
-gcloud compute networks vpc-access connectors create bid-app-connector --region europe-west1 --range 10.8.0.0/28
+gcloud compute networks vpc-access connectors create bid-app-connector --region europe-west6 --range 10.8.0.0/28
 ```
 
 Anschliessend kann die Bid App angepasst werden, dass dieser Connector verwendet wird. Zudem muss die Umgebungsvariable `REDIS_HOST` gesetzt werden.
