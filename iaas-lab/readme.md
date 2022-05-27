@@ -7,18 +7,6 @@ Ziel:
 - Umgang mit Amazon EC2 lernen
 - Load Balancing
 
-## Vorbereitung
-
-Damit ihr dieses Lab durchspielen könnt, benötigt ihr ein AWS Account.
-Ein AWS Account kann als Student gratis bestellt werden inkl. Guthaben (es wird keine Kreditkarte benötigt).
-Es dauert ca. 2 Tage, bis euer Account aktiviert wird.
-
-1. https://www.awseducate.com/registration#APP_TYPE
-2. Student auswählen
-3. Mit BFH Mail Adresse anmelden.
-
-Mehr dazu unter https://aws.amazon.com/de/education/awseducate/
-
 ## Ablauf
 
 Ziel des Labs ist es, die Bid-App (App für Auktionen) in der AWS Cloud zu deplyoen.
@@ -116,6 +104,11 @@ ab -n 10000 -c 10 http://YOURWEBSITE.COM/
 ```
 
 Beobachtet was passiert, wenn ihr Last generiert und die Last wieder zurück geht.
+
+#### FAQ Auto Scaling
+
+- Application Load Balancer Request Count per Target - [Request Count per Target](https://stackoverflow.com/questions/47611780/aws-auto-scaling-group-application-load-balancer-request-count-per-target)
+- Min, Max, Desired - [Min, Max, Desired](https://stackoverflow.com/questions/36270873/aws-ec2-auto-scaling-groups-i-get-min-and-max-but-whats-desired-instances-lim)
 
 ## 5. Bonus: Redis
 

@@ -1,5 +1,6 @@
 # CAS Cloud: IaaS und PaaS
 
+0. [IaaS Lab](./iaas-prelab/readme.md)
 1. [IaaS Lab](./iaas-lab/readme.md)
 2. [IaaS Security - Architecture](./iaas-security/readme.md)
 3. [IaaS Security - Exercise](./iaas-security/exercise.md)
