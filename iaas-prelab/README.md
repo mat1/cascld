@@ -1,12 +1,9 @@
 # Prelab
 
-Im CAS Cloud gibt es Unterschiede im Vorwissen im Bereich Cloud / IT.
-
 Ziele des Prelabs:
 
-* Notebook für Labs vorbereitet
-* Umgang mit dem Terminal lernen
-* Verwendung von häufigen Befehlen wie: ls, cat, mv, cp, curl
+* Die Kursteilnehmer sind für das IaaS Lab vorbereitet
+* Die Kursteilnehmer können mit wichtigen Unix Befehlen & Tools umgehen (ls, cat, mv, cp, mkdir, vim)
 
 ## Windows
 
@@ -24,13 +21,6 @@ wsl --install
 
 ## Hilfe zu Befehlen
 
-tldr (Too long; didn't read) bitte gute und kurze Erklärungen zu den meisten Linux Befehlen.
-
-* tldr: https://tldr.ostera.io/
-* tldr installieren https://github.com/tldr-pages/tldr
-
-**Alternative**
-
 ```sh
 # Show short manual for command
 cat --help
@@ -40,6 +30,13 @@ cat --help
 # Show manual for command
 man cat
 ```
+
+**Alternative**
+
+tldr (Too long; didn't read) bittet gute und kurze Erklärungen zu den meisten Linux Befehlen.
+
+* tldr: https://tldr.ostera.io/
+* tldr installieren https://github.com/tldr-pages/tldr
 
 ## Übung 1 - Umgang mit Dateien
 
@@ -67,7 +64,7 @@ Ziel der Übung ist, dass ihr alles per Kommandozeile ausführt.
 
 1. Installiere node
 
-2. Intalliere npm
+2. Installiere npm
 
 3. Installiere https://github.com/http-party/http-server
 
@@ -77,3 +74,23 @@ sudo npm install http-server -g
 
 ## Übung 3 - Webserver & curl
 
+1. Starte den http-server im Ordner `casprelab`
+
+2. Öffne die Webseite im Browser
+
+3. Mache ein HTTP Request mit `curl` auf `localhost`. Es sollte folgendes zurück kommen:
+
+```shell
+
+```
+
+4. Mache ein HTTP Request mit `curl` auf `contact.html`. Es sollte folgendes zurück kommen:
+
+```shell
+
+```
+
+## Weitere Ressourcen & Übungen
+
+- Online Challenge um spielerisch den Umgang mit der Shell zu lernen https://cmdchallenge.com/
+- Linux Command Cheat Sheet https://www.guru99.com/linux-commands-cheat-sheet.html
