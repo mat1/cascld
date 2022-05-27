@@ -1,6 +1,6 @@
 # Prelab
 
-Ziele des Prelabs:
+Ziele der IaaS Lab Vorbereitung:
 
 * Die Kursteilnehmer sind für das IaaS Lab vorbereitet
 * Die Kursteilnehmer können mit wichtigen Unix Befehlen & Tools umgehen (ls, cat, mv, cp, mkdir, vim)
@@ -19,7 +19,7 @@ wsl --install
 
 > Alternative: Linux VM oder Git Bash https://gitforwindows.org/ 
 
-## Hilfe zu Befehlen
+## Hilfe zu Unix Befehlen
 
 ```sh
 # Show short manual for command
@@ -33,32 +33,37 @@ man cat
 
 **Alternative**
 
-tldr (Too long; didn't read) bittet gute und kurze Erklärungen zu den meisten Linux Befehlen.
+tldr (Too long; didn't read) bietet gute und kurze Erklärungen zu den meisten Linux Befehlen.
 
-* tldr: https://tldr.ostera.io/
+* tldr https://tldr.ostera.io/
 * tldr installieren https://github.com/tldr-pages/tldr
 
 ## Übung 1 - Umgang mit Dateien
 
 Ziel der Übung ist, dass ihr alles per Kommandozeile ausführt.
 
-> Befehle: mkdir, touch, echo, cat, cp, vim
+> Befehle: mkdir, touch, echo, cat, cp, cd, vim
 
 1. Erstelle per Kommandozeile einen Ordner `casprelab`
 
 2. Erstelle im Ordner `casprelab` die Datei `index.html`
 
-3. Kopiere den Inhalt unten in die Datei `index.html`
+3. Kopiere den Inhalt unten in die Datei `index.html` z.B. mit `vim`
 
 ```html
-
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Welcome CAS Cloud</h1>
+</body>
+</html>
 ```
 
 4. Gebe den Inhalt der Datei `index.html` auf der Konsole aus
 
 5. Kopiere `index.html` nach `contact.html`
 
-6. Ersetze im `contact.html` den Text "Welcome CAS Cloud" mit deinem Namen
+6. Ersetze im `contact.html` den Text "Welcome CAS Cloud" mit deinem Namen z.B. mit `vim`
 
 ## Übung 2 - Software installieren
 
