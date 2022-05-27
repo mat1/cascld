@@ -42,7 +42,7 @@ tldr (Too long; didn't read) bietet gute und kurze Erklärungen zu den meisten L
 
 Ziel der Übung ist, dass ihr alles per Kommandozeile ausführt.
 
-> Befehle: mkdir, touch, echo, cat, cp, cd, vim
+> Befehle: mkdir, touch, ls, cat, cp, cd, vim
 
 1. Erstelle per Kommandozeile einen Ordner `casprelab`
 
