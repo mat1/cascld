@@ -9,7 +9,7 @@ Versucht mit Hilfe von Security Groups die Kommunikation zwischen den einzelnen 
 ## Protect Data at Transport - HTTPS
 
 Die Kommunikation zwischen den Benutzern und der Bid App ist unverschlüsselt über HTTP. Ziel dieser Übung ist es, dass die Webseite über HTTPS ausgeliefert wird.
-Ihr könnt dazu das Wildcard Zertifikat `*.cascld.com` verwenden. Diese Zertifikat müsst ihr bei mir bestellen (Nachricht im Teams mit der verwendeten Region). Anschliessend könnt ihr das Zertifikat im Application Load Balancer eintragen. Dazu müsst ihr einen neuen Listener erstellen.
+Ihr könnt dazu das Wildcard Zertifikat `*.cascld.com` verwenden. Anschliessend könnt ihr das Zertifikat im Application Load Balancer eintragen. Dazu müsst ihr einen neuen Listener erstellen.
 
 Nun könnt ihr eure Anwendung über https:// aufrufen. Im Browser solltet ihr eine Warnung sehen, dass das Zertifikat ungültig ist. Warum ist dies so?
 
@@ -20,7 +20,10 @@ AWS Cloud Trail zeichnet auf, wer wann was geändert hat in der AWS Cloud.
 Versucht mit AWS Cloud Trail folgende Fragen zu beantworten:
 
 - Wer hat zuletzt eine neue EC2 Instanz gestartet?
-- Wer hat zuletzt eine Security Group angepasst? Was wurde geändert?
+
+- Wer hat zuletzt eine Security Group angepasst? Was wurde geändert?`AuthorizeSecurityGroupIngress`, `AuthorizeSecurityGroupEngress`..
+
+> Ihr müsst kein neuen Trail erstellen, sondern im Cloud Trail Menü "Event history" auswählen.
 
 ## Bonus: Protect Data at Rest & at Transport - Redis
 
