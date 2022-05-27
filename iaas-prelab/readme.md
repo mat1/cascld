@@ -65,6 +65,14 @@ Ziel der Übung ist, dass ihr alles per Kommandozeile ausführt.
 
 6. Ersetze im `contact.html` den Text "Welcome CAS Cloud" mit deinem Namen z.B. mit `vim`
 
+7. Liste die Dateien im Ordner `casprelab` auf. Eine Zeile pro Datei. Erwartetes Resultat:
+
+```sh
+total 8
+-rw-r--r-- 1 user user 73 May 27 13:05 contact.html
+-rw-r--r-- 1 user user 77 May 27 13:03 index.html
+```
+
 ## Übung 2 - Software installieren
 
 1. Installiere node
@@ -83,16 +91,25 @@ sudo npm install http-server -g
 
 2. Öffne die Webseite im Browser
 
-3. Mache ein HTTP Request mit `curl` auf `localhost`. Es sollte folgendes zurück kommen:
+3. Mache ein HTTP Request mit `curl` auf `localhost:8080`. Erwartetes Resultat:
 
 ```shell
-
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Welcome CAS Cloud</h1>
+</body>
+</html>
 ```
 
-4. Mache ein HTTP Request mit `curl` auf `contact.html`. Es sollte folgendes zurück kommen:
-
+4. Mache ein HTTP Request mit `curl` auf `contact.html`. Erwartetes Resultat:
 ```shell
-
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Matthias Brun</h1>
+</body>
+</html>
 ```
 
 ## Weitere Ressourcen & Übungen
