@@ -76,7 +76,8 @@ npm install http-server -g
 1. Starte den http-server im Ordner `casprelab`
 
 ```sh
-npm install http-server -g
+cd casprelab
+http-server .
 ```
 
 2. Öffne die Webseite im Browser

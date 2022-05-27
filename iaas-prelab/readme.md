@@ -93,7 +93,7 @@ sudo npm install http-server -g
 
 3. Mache ein HTTP Request mit `curl` auf `localhost:8080`. Erwartetes Resultat:
 
-```shell
+```sh
 <!DOCTYPE html>
 <html>
 <body>
@@ -103,7 +103,7 @@ sudo npm install http-server -g
 ```
 
 4. Mache ein HTTP Request mit `curl` auf `contact.html`. Erwartetes Resultat:
-```shell
+```sh
 <!DOCTYPE html>
 <html>
 <body>
