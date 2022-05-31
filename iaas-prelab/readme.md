@@ -75,14 +75,14 @@ total 8
 
 ## Übung 2 - Software installieren
 
-1. Installiere node
+1. Installiere node (min v16)
 
 2. Installiere npm
 
 3. Installiere https://github.com/http-party/http-server
 
 ```sh
-sudo npm install http-server -g
+npm install http-server -g
 ```
 
 ## Übung 3 - Webserver & curl
