@@ -18,7 +18,7 @@ Dabei sollen EC2 Instanzen verwendet werden ohne Amazon Container Service oder a
 
 1. EC2 Instanz erstellen z.B. Amazon Linux 2 AMI
 2. Per SSH auf Instanz einloggen.
-   Unter Windows z.B. Git Bash https://gitforwindows.org/ oder WSL2
+   Unter Windows z.B. WSL oder Git Bash https://gitforwindows.org/
 3. Docker auf der EC2 Instanz installieren
 
 ```sh
