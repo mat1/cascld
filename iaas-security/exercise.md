@@ -27,7 +27,7 @@ Versucht mit AWS Cloud Trail folgende Fragen zu beantworten:
 
 ## Bonus: Protect Data at Rest & at Transport - Redis
 
-Für diese übung müsst ihr die Bonus Übung "Redis" vom IaaS Lab gelöst haben. Aktuell werden die Daten zwischen der Bid App und dem Redis Cluster unverschlüsselt übertragen. Zudem werden die Daten im Redis Cluster unverschlüsselt auf die Disk gespeichert.
+Für diese Übung müsst ihr die Bonus Übung "Redis" vom IaaS Lab gelöst haben. Aktuell werden die Daten zwischen der Bid App und dem Redis Cluster unverschlüsselt übertragen. Zudem werden die Daten im Redis Cluster unverschlüsselt auf die Disk gespeichert.
 
 Erstellt einen neuen Redis Cluster und aktiviert `Encryption at-rest`, `Encryption in-transit` und `Redis AUTH`.
 
