@@ -16,7 +16,7 @@ Dabei sollen EC2 Instanzen verwendet werden ohne Amazon Container Service oder a
 
 ## 1. Anwendung auf einer Instanz deployen
 
-1. EC2 Instanz erstellen (t2.micro) z.B. Amazon Linux 2 AMI
+1. EC2 Instanz erstellen (t2.micro oder t3.micro) z.B. Amazon Linux 2 AMI
 2. Per SSH auf Instanz einloggen.
    Unter Windows z.B. WSL oder Git Bash https://gitforwindows.org/
 3. Docker auf der EC2 Instanz installieren
