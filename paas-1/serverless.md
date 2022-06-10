@@ -30,7 +30,7 @@ In dieser Übung werden zwei Funktionen erstellt:
 1. Suche nach Cloud Function
 2. Erstelle eine Funktion mit dem Namen `get-highest-bid`
 3. Region: `europe-west6` Schweiz :)
-4. `Allow unauthenticated invocations`
+4. `Allow unauthenticated invocations` und `HTTP` als Trigger type
 5. Runtime: `Node.js 14`
 6. Der Quellcode für die Funktion ist unten aufgeführt:
 
@@ -163,7 +163,7 @@ Nun sollte die Webseite lokal funktionieren.
 
 ### Webseite auf Google Bucket hochladen
 
-1. Suche nach `Create bucket`
+1. Suche nach `Cloud Storage`
 2. Erstelle einen Bucket mit dem Namen `cascld`
 3. Ändere die Berechtiung das Jeder den Inhalt des Buckets lesen kann
 4. Permissions Tab -> Add member -> `allUsers` und Role `Storage Object Viewer`
