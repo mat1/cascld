@@ -88,15 +88,15 @@ gcloud run deploy pcws \
   --allow-unauthenticated
 ```
 
-## Write to Cloud Bucket or File System
+## Write to Cloud Storage or File System
 
-Code Anpassen damit direkt auf Cloud Bucket geschrieben wird.
+Code Anpassen damit direkt auf Cloud Storage geschrieben wird.
 
 https://cloud.google.com/storage/docs/reference/libraries
 
 https://cloud.google.com/run/docs/using-gcp-services#connecting_to_services_in_code
 
-Fuse - Mount Cloud Bucket (Similar to S3)
+Fuse - Mount Cloud Storage (Similar to S3)
 
 https://cloud.google.com/run/docs/tutorials/network-filesystems-fuse
 
