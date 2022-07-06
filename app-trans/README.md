@@ -53,9 +53,9 @@ gcloud sql connect pcws-new-db --user=postgres --quiet
 SELECT * FROM pcws_codes;
 ```
 
-6. Allow Connection from everywhere `0.0.0.0/0`
+6. Allow Connection from everywhere `0.0.0.0/0` or BFH IP
 
-## Connect to DB
+## Connect to DB - Public IP
 
 ```sh
 # jdbc:postgresql://34.65.42.61:5432/postgres
@@ -87,5 +87,23 @@ gcloud run deploy pcws \
   --set-env-vars SPRING_PROFILES_ACTIVE=real,USE_DATALOG_SERVICE_MOCK=true,PCWS_DATASOURCE_JDBC_URL=jdbc:postgresql://10.67.176.2:5432/postgres,PCWS_DATASOURCE_USERNAME=postgres,PCWS_DATASOURCE_PASSWORD=root1234 \
   --allow-unauthenticated
 ```
+
+## Write to Cloud Bucket or File System
+
+Code Anpassen damit direkt auf Cloud Bucket geschrieben wird.
+
+https://cloud.google.com/storage/docs/reference/libraries
+
+https://cloud.google.com/run/docs/using-gcp-services#connecting_to_services_in_code
+
+Fuse - Mount Cloud Bucket (Similar to S3)
+
+https://cloud.google.com/run/docs/tutorials/network-filesystems-fuse
+
+
+Mount Network Filesystem (Einfacher)
+
+https://cloud.google.com/run/docs/tutorials/network-filesystems-filestore
+
 
 
