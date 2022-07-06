@@ -69,7 +69,7 @@ gcloud run deploy pcws \
   --allow-unauthenticated
 ```
 
-## Connecto to DB over VPC
+## Connect to DB over VPC
 
 ```sh
 # Create VPC connector
@@ -90,7 +90,7 @@ gcloud run deploy pcws \
 
 ## Write to Cloud Storage or File System
 
-Code Anpassen damit direkt auf Cloud Storage geschrieben wird.
+Code Anpassen damit direkt auf Cloud Storage geschrieben wird. --> Hat Auswirkung auf Shell Script
 
 https://cloud.google.com/storage/docs/reference/libraries
 
@@ -101,9 +101,12 @@ Fuse - Mount Cloud Storage (Similar to S3)
 https://cloud.google.com/run/docs/tutorials/network-filesystems-fuse
 
 
-Mount Network Filesystem (Einfacher)
+Mount Network Filesystem (Einfacher) - Filestore
 
 https://cloud.google.com/run/docs/tutorials/network-filesystems-filestore
+
+## Ohne Filesystem z.B. Pub / Sub --> Function
+
 
 
 
