@@ -45,6 +45,7 @@ Im UI
 3. Private IP (Damit der Code nicht angepasst werden muss). Alternative Public IP und DB ist vom Internet aus erreichbar :)
 4. Ligthwight
 5. 10 GB Storage
+6. Allow Connection from everywhere `0.0.0.0/0` or BFH IP
 
 ```sh
 gcloud sql connect pcws-new-db --user=postgres --quiet
@@ -54,8 +55,6 @@ gcloud sql connect pcws-new-db --user=postgres --quiet
 # Test
 SELECT * FROM pcws_codes;
 ```
-
-6. Allow Connection from everywhere `0.0.0.0/0` or BFH IP
 
 ## Connect to DB - Public IP
 
