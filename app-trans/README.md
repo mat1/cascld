@@ -1,8 +1,8 @@
-# App Trans
+# Application Transformation
 
 https://github.com/SamuelBucheliZ/bfh-apptrans-exercise
 
-## Setup Local
+## 1. Local Setup
 
 ```sh
 docker build . -t pcws
@@ -11,7 +11,7 @@ docker build . -t pcws
 docker run -p 8080:8080 -e SPRING_PROFILES_ACTIVE=mock pcws
 ```
 
-## Push Image to Google Container Registry
+## 2. Push Image to Google Container Registry
 
 ```sh
 gcloud auth login
@@ -24,7 +24,7 @@ docker tag pcws gcr.io/cascld2022/pcws
 docker push gcr.io/cascld2022/pcws
 ```
 
-## Start cloud run with mock profile
+## 3. Cloud Run with Mock Profile
 
 ```sh
 gcloud run deploy pcws \
@@ -36,16 +36,16 @@ gcloud run deploy pcws \
   --allow-unauthenticated
 ```
 
-## Setup database
+## 4. Setup Database
 
 Im UI
 
 1. PostgresSQL DB mit Version 10 erstellen.
 2. Password `root1234`
-3. Private IP (Damit der Code nicht angepasst werden muss). Alternative Public IP und DB ist vom Internet aus erreichbar :)
-4. Ligthwight
+3. Private IP (damit der Code nicht angepasst werden muss). Alternative Public IP und DB Zugriff vom Internet zulassen.
+4. Lightweight
 5. 10 GB Storage
-6. Allow Connection from everywhere `0.0.0.0/0` or BFH IP
+6. Allow Connection from everywhere `0.0.0.0/0` oder BFH IP
 
 ```sh
 gcloud sql connect pcws-new-db --user=postgres --quiet
@@ -106,8 +106,4 @@ Mount Network Filesystem (Einfacher) - Filestore
 
 https://cloud.google.com/run/docs/tutorials/network-filesystems-filestore
 
-## Ohne Filesystem z.B. Pub / Sub --> Function
-
-
-
-
+## Ohne Filesystem z.B. Pub / Sub und Google Function
