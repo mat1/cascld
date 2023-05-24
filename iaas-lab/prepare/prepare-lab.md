@@ -13,8 +13,12 @@ AmazonElastiCacheFullAccess
 AWSCloudTrailReadOnlyAccess
 Neue Policy erstellen `cas-limit-instance-type.json` und der Gruppe zuweisen
 
-5. CAS Users erstellen
+5. Create Access Key für neuen AWS User
+
+6. Update `~/.aws/credentials`
+
+7. CAS Users erstellen `./create-users.sh`
 
 6. CSV Export
 
-7. AWS Regions aktivieren
+7. AWS Regions aktivieren `./enable-regions.sh`
