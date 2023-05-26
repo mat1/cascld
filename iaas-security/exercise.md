@@ -9,7 +9,7 @@ Versucht mit Hilfe von Security Groups die Kommunikation zwischen den einzelnen 
 ## Protect Data at Transport - HTTPS
 
 Die Kommunikation zwischen den Benutzern und der Bid App ist unverschlüsselt über HTTP. Ziel dieser Übung ist es, dass die Webseite über HTTPS ausgeliefert wird.
-Ihr könnt dazu das Wildcard Zertifikat `*.cascld2022.com` verwenden. Anschliessend könnt ihr das Zertifikat im Application Load Balancer eintragen. Dazu müsst ihr einen neuen Listener erstellen.
+Ihr könnt dazu das Wildcard Zertifikat `*.cascld.de` verwenden. Anschliessend könnt ihr das Zertifikat im Application Load Balancer eintragen. Dazu müsst ihr einen neuen Listener erstellen.
 
 Nun könnt ihr eure Anwendung über https:// aufrufen. Im Browser solltet ihr eine Warnung sehen, dass das Zertifikat ungültig ist. Warum ist dies so?
 
