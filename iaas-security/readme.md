@@ -11,7 +11,7 @@ Natürlich gibt es dadurch viele neue Anforderungen:
 
 In 2er Gruppen
 
-1. Zeichne die aktuelle Architektur auf z.B. mit https://www.diagrams.net/
+1. Zeichne die aktuelle Architektur auf z.B. mit https://www.drawio.com/
 
 2. Zeige in der IST-Situation auf, was du ändern würdest, damit die Bid App sicherer wird
 
