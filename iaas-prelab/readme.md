@@ -75,8 +75,9 @@ total 8
 
 ## Übung 2 - Software installieren
 
-1. Installiere webfs https://linux.bytesex.org/misc/webfs.html (einfacher Webserver)
+> Befehle: apt
 
+1. Installiere webfs https://linux.bytesex.org/misc/webfs.html (einfacher Webserver)
 
 ## Übung 3 - Webserver & curl
 
