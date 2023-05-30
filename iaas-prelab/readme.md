@@ -75,19 +75,18 @@ total 8
 
 ## Übung 2 - Software installieren
 
-1. Installiere node (min v16)
+1. Installiere webfs https://linux.bytesex.org/misc/webfs.html (einfacher Webserver)
 
-2. Installiere npm
-
-3. Installiere https://github.com/http-party/http-server
-
-```sh
-npm install http-server -g
-```
 
 ## Übung 3 - Webserver & curl
 
-1. Starte den http-server im Ordner `casprelab`
+1. Starte webfs im Ordner `casprelab`
+
+```sh
+webfsd -F -p 8080 -d -f index.html -r .
+```
+
+Bonus: Schaue in der webfs Dokumentation nach, was die einzelnen Flags (-F, -p) für einen Effekt haben.
 
 2. Öffne die Webseite im Browser
 

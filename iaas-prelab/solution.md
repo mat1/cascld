@@ -53,22 +53,10 @@ total 8
 
 ## Übung 2 - Software installieren
 
-1. Installiere node
+1. Installiere webfs
 
 ```sh
-sudo apt install nodejs
-```
-
-2. Installiere npm
-
-```sh
-sudo apt install npm
-```
-
-3. Installiere https://github.com/http-party/http-server
-
-```sh
-npm install http-server -g
+sudo apt install webfs
 ```
 
 ## Übung 3 - Webserver & curl
