@@ -88,7 +88,7 @@ webfsd -F -p 8080 -d -f index.html -r .
 
 Bonus: Schaue in der webfs Dokumentation nach, was die einzelnen Flags (-F, -p) für einen Effekt haben.
 
-2. Öffne die Webseite im Browser
+2. Öffne die Webseite im Browser http://localhost:8080/
 
 3. Mache ein HTTP Request mit `curl` auf `localhost:8080`. Erwartetes Resultat:
 

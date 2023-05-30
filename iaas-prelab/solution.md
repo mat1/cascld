@@ -68,7 +68,7 @@ cd casprelab
 http-server .
 ```
 
-2. Öffne die Webseite im Browser
+2. Öffne die Webseite im Browser http://localhost:8080/
 
 3. Mache ein HTTP Request mit `curl` auf `localhost:8080`. Erwartetes Resultat:
 
