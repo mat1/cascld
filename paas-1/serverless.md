@@ -29,21 +29,23 @@ In dieser Übung werden zwei Funktionen erstellt:
 
 1. Suche nach Cloud Function
 2. Erstelle eine Funktion mit dem Namen `get-highest-bid`
-3. Region: `europe-west6` Schweiz :)
-4. `Allow unauthenticated invocations` und `HTTP` als Trigger type
-5. Runtime: `Node.js 14`
-6. Der Quellcode für die Funktion ist unten aufgeführt:
+3. Environment: `2nd gen`
+4. Region: `europe-west6` Schweiz :)
+5. `Allow unauthenticated invocations` und `HTTP` als Trigger type
+6. Runtime: `Node.js 18`
+7. Der Quellcode für die Funktion ist unten aufgeführt:
 
 **index.js**
 
 ```js
+const functions = require('@google-cloud/functions-framework');
 const { Datastore } = require("@google-cloud/datastore");
 
 // Verwendet Datastore des Projekts
 const datastore = new Datastore();
 
-exports.getHighestBid = async (req, res) => {
-  console.log("getHighestBid");
+functions.http('getHighestBid', async (req, res) => {
+  console.log("getHighestBid", req);
 
   const key = datastore.key(["bids", "bid"]);
 
@@ -56,27 +58,26 @@ exports.getHighestBid = async (req, res) => {
     hostname: "Google Functions",
   };
 
+  res.set("Content-Type", "application/json");
   res.set("Access-Control-Allow-Origin", "*");
   res.set("Access-Control-Allow-Methods", "GET, POST");
   res.status(200).send(result);
-};
+});
 ```
 
 **package.json**
 
 ```json
 {
-  "name": "sample-http",
-  "version": "0.0.1",
   "dependencies": {
-    "@google-cloud/datastore": "6.0.0",
-    "semver": "^5.5.1"
+    "@google-cloud/functions-framework": "3.0.0",
+    "@google-cloud/datastore": "7.5.1"
   }
 }
 ```
 
-7. Entry point: `getHighestBid`
-8. Teste die Funktion
+9. Entry point: `getHighestBid`
+10. Teste die Funktion z.B. mit `curl YOUR-CLOUD-FUNCTION-URL`
 
 Die Funktion sollte folgendes zurückgeben:
 
@@ -93,11 +94,12 @@ Der Code dazu ist unten aufgeführt. Bei Function to execute (Entry point) muss 
 **index.js**
 
 ```js
+const functions = require('@google-cloud/functions-framework');
 const { Datastore } = require("@google-cloud/datastore");
 
 const datastore = new Datastore();
 
-exports.bid = async (req, res) => {
+functions.http('bid', async (req, res) => {
   const bid = req.body;
 
   console.log("Bid from user:", bid);
@@ -110,30 +112,29 @@ exports.bid = async (req, res) => {
 
   await datastore.save(entity);
 
+  res.set("Content-Type", "application/json");
   res.set("Access-Control-Allow-Origin", "*");
   res.set("Access-Control-Allow-Methods", "GET, POST");
   res.set("Access-Control-Allow-Headers", "Content-Type");
   res.status(200).send(bid);
-};
+});
 ```
 
 **package.json**
 
 ```json
 {
-  "name": "sample-http",
-  "version": "0.0.1",
   "dependencies": {
-    "@google-cloud/datastore": "6.0.0",
-    "semver": "^5.5.1"
+    "@google-cloud/functions-framework": "3.0.0",
+    "@google-cloud/datastore": "7.5.1"
   }
 }
 ```
 
 Du kannst die Funktion mit folgendem Input testen:
 
-```json
-{ "bid": 2 }
+```sh
+curl -X POST YOUR-CLOUD-FUNCTION-URL -H "Content-Type: application/json" -d '{"bid": 3}'
 ```
 
 Die Funktion sollte folgenden Output generieren:
@@ -165,6 +166,7 @@ Nun sollte die Webseite lokal funktionieren.
 
 1. Suche nach `Cloud Storage`
 2. Erstelle einen Bucket mit dem Namen `cascld`
+3. Deaktivere `Prevent public access` damit die Daten aus dem Internet zugreifbar sind
 3. Ändere die Berechtiung das Jeder den Inhalt des Buckets lesen kann
 4. Permissions Tab -> Add member -> `allUsers` und Role `Storage Object Viewer`
 5. Lade die Webseite hoch
