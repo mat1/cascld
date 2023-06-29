@@ -1,10 +1,11 @@
+const functions = require('@google-cloud/functions-framework');
 const { Datastore } = require("@google-cloud/datastore");
 
 // Verwendet Datastore des Projekts
 const datastore = new Datastore();
 
-exports.getHighestBid = async (req, res) => {
-  console.log("getHighestBid");
+functions.http('getHighestBid', async (req, res) => {
+  console.log("getHighestBid", req);
 
   const key = datastore.key(["bids", "bid"]);
 
@@ -17,7 +18,8 @@ exports.getHighestBid = async (req, res) => {
     hostname: "Google Functions",
   };
 
+  res.set("Content-Type", "application/json");
   res.set("Access-Control-Allow-Origin", "*");
   res.set("Access-Control-Allow-Methods", "GET, POST");
   res.status(200).send(result);
-};
+});

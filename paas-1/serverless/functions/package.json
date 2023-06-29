@@ -1,8 +1,6 @@
 {
-  "name": "sample-http",
-  "version": "0.0.1",
   "dependencies": {
-    "@google-cloud/datastore": "6.0.0",
-    "semver": "^5.5.1"
+    "@google-cloud/functions-framework": "3.0.0",
+    "@google-cloud/datastore": "7.5.1"
   }
 }

@@ -7,7 +7,7 @@ const getHighestBid = () => {
     .then((r) => {
       const bidApp = document.getElementById("bid-app");
 
-      const min = r.highest != null ? r.highest + 1 : 0;
+      const min = r.highest != null ? r.highest + 1 : 1;
 
       bidApp.innerHTML = `  
         <h1>Highest Bid: ${r.highest}</h1>

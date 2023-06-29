@@ -10,11 +10,11 @@ gcloud services enable sqladmin.googleapis.com
 
 ```sh
 gcloud run deploy bid-app-db-2 \
-  --image gcr.io/cascld2022/bid-app \
+  --image gcr.io/cascld-391011/bid-app \
   --region=europe-west6 \
   --platform=managed \
-  --add-cloudsql-instances cascld2022:europe-west6:bid-db \
-  --set-env-vars MYSQL_UNIX_SOCKET="/cloudsql/cascld2022:europe-west6:bid-db",MYSQL_PASSWORD="password123" \
+  --add-cloudsql-instances cascld-391011:europe-west6:bid-db \
+  --set-env-vars MYSQL_UNIX_SOCKET="/cloudsql/cascld-391011:europe-west6:bid-db",MYSQL_PASSWORD="password123" \
   --allow-unauthenticated
 ```
 
