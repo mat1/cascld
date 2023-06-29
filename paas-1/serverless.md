@@ -134,7 +134,7 @@ functions.http('bid', async (req, res) => {
 Du kannst die Funktion mit folgendem Input testen:
 
 ```sh
-curl -X POST YOUR-CLOUD-FUNCTION-URL -H "Content-Type: application/json" -d '{"bid": 3}'
+curl -X POST YOUR-CLOUD-FUNCTION-URL -H "Content-Type: application/json" -d '{"bid": 2}'
 ```
 
 Die Funktion sollte folgenden Output generieren:
