@@ -17,22 +17,24 @@ Test open http://localhost:8080/swagger-ui/index.html
 
 ## 2. Push Image to Google Container Registry
 
+Alternative in der Google Cloud Shell Dockerimage bauen.
+
 ```sh
 gcloud auth login
 
 gcloud auth configure-docker
 
-gcloud config set project cascld2022
+gcloud config set project apptrans2023
 
-docker tag pcws gcr.io/cascld2022/pcws
-docker push gcr.io/cascld2022/pcws
+docker tag pcws gcr.io/apptrans2023/pcws
+docker push gcr.io/apptrans2023/pcws
 ```
 
 ## 3. Cloud Run with Mock Profile
 
 ```sh
-gcloud run deploy pcws \
-  --image gcr.io/cascld2022/pcws \
+gcloud run deploy pcws-mock \
+  --image gcr.io/apptrans2023/pcws \
   --region=europe-west6 \
   --platform=managed \
   --min-instances=1 \
@@ -52,7 +54,9 @@ Im UI
 6. Allow Connection from everywhere `0.0.0.0/0` oder BFH IP
 
 ```sh
-gcloud sql connect pcws-new-db --user=postgres --quiet
+gcloud services enable sql-component.googleapis.com
+
+gcloud sql connect pcws-db --user=postgres --quiet
 
 # SQL script copy & paste and execute
 
@@ -66,7 +70,7 @@ SELECT * FROM pcws_codes;
 # jdbc:postgresql://34.65.42.61:5432/postgres
 
 gcloud run deploy pcws \
-  --image gcr.io/cascld2022/pcws \
+  --image gcr.io/apptrans2023/pcws \
   --region=europe-west6 \
   --platform=managed \
   --min-instances=1 \
@@ -80,16 +84,16 @@ gcloud run deploy pcws \
 # Create VPC connector
 gcloud services enable vpcaccess.googleapis.com
 
-gcloud compute networks vpc-access connectors create bid-app-connector --region europe-west6 --range 10.8.0.0/28
+gcloud compute networks vpc-access connectors create pcws-connector --region europe-west6 --range 10.8.0.0/28
 
 # Connect to private ip
 gcloud run deploy pcws \
-  --image gcr.io/cascld2022/pcws \
+  --image gcr.io/apptrans2023/pcws \
   --region=europe-west6 \
   --platform=managed \
   --min-instances=1 \
-  --vpc-connector=projects/cascld2022/locations/europe-west6/connectors/bid-app-connector \
-  --set-env-vars SPRING_PROFILES_ACTIVE=real,USE_DATALOG_SERVICE_MOCK=true,PCWS_DATASOURCE_JDBC_URL=jdbc:postgresql://10.67.176.2:5432/postgres,PCWS_DATASOURCE_USERNAME=postgres,PCWS_DATASOURCE_PASSWORD=root1234 \
+  --vpc-connector=projects/apptrans2023/locations/europe-west6/connectors/pcws-connector \
+  --set-env-vars SPRING_PROFILES_ACTIVE=real,USE_DATALOG_SERVICE_MOCK=true,PCWS_DATASOURCE_JDBC_URL=jdbc:postgresql://10.121.224.2:5432/postgres,PCWS_DATASOURCE_USERNAME=postgres,PCWS_DATASOURCE_PASSWORD=root1234 \
   --allow-unauthenticated
 ```
 
@@ -109,5 +113,30 @@ https://cloud.google.com/run/docs/tutorials/network-filesystems-fuse
 Mount Network Filesystem (Einfacher) - Filestore
 
 https://cloud.google.com/run/docs/tutorials/network-filesystems-filestore
+
+## Filestore
+
+https://cloud.google.com/run/docs/tutorials/network-filesystems-filestore
+
+```sh
+gcloud config set filestore/zone europe-west6-a
+
+gcloud filestore instances create pcws-store \
+    --tier=STANDARD \
+    --file-share=name=pcws,capacity=1TiB \
+    --network=name="default"
+
+
+export FILESTORE_IP_ADDRESS=$(gcloud filestore instances describe pcws-store --format "value(networks.ipAddresses[0])")
+
+gcloud iam service-accounts create fs-identity
+
+gcloud run deploy filesystem-app --source . \
+    --vpc-connector CONNECTOR_NAME \
+    --execution-environment gen2 \
+    --allow-unauthenticated \
+    --service-account fs-identity \
+    --update-env-vars FILESTORE_IP_ADDRESS=$FILESTORE_IP_ADDRESS,FILE_SHARE_NAME=FILE_SHARE_NAME
+```
 
 ## Ohne Filesystem z.B. Pub / Sub und Google Function
