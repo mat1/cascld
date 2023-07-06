@@ -2,6 +2,8 @@
 
 https://github.com/SamuelBucheliZ/bfh-apptrans-exercise
 
+https://github.com/SamuelBucheliZ/bfh-pcws
+
 ## 1. Local Setup
 
 ```sh
@@ -10,6 +12,8 @@ docker build . -t pcws
 # Start PCWS with mock profile
 docker run -p 8080:8080 -e SPRING_PROFILES_ACTIVE=mock pcws
 ```
+
+Test open http://localhost:8080/swagger-ui/index.html
 
 ## 2. Push Image to Google Container Registry
 
