@@ -18,7 +18,7 @@ regions=(
 )
 
 # Domain name
-domain="*.cascld.de"
+domain="*.cascld.com"
 
 # Iterate over the regions
 for region in "${regions[@]}"
