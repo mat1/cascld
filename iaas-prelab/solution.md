@@ -51,6 +51,18 @@ total 8
 -rw-r--r-- 1 user user 77 May 27 13:03 index.html
 ```
 
+8. **Dateien finden**: Verwende den Befehl `find` im `casprelab` Ordner, um alle HTML-Dateien zu listen.
+
+```sh
+find . -type f -name "*.html"
+```
+
+9. **Inhalte durchsuchen**: Benutze `grep`, um in allen HTML-Dateien nach dem Wort "Welcome" zu suchen.
+
+```sh
+grep -R "Welcome" *.html
+```
+
 ## Übung 2 - Software installieren
 
 1. Installiere webfs

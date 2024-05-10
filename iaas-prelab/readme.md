@@ -42,7 +42,7 @@ tldr (Too long; didn't read) bietet gute und kurze Erklärungen zu den meisten L
 
 Ziel der Übung ist, dass ihr alles per Kommandozeile ausführt.
 
-> Befehle: mkdir, touch, ls, cat, cp, cd, vim
+> Befehle: mkdir, touch, ls, cat, cp, cd, vim, find, grep
 
 1. Erstelle per Kommandozeile einen Ordner `casprelab`
 
@@ -71,6 +71,19 @@ Ziel der Übung ist, dass ihr alles per Kommandozeile ausführt.
 total 8
 -rw-r--r-- 1 user user 73 May 27 13:05 contact.html
 -rw-r--r-- 1 user user 77 May 27 13:03 index.html
+```
+
+8. Dateien finden: Verwende den Befehl `find` im `casprelab` Ordner, um alle HTML-Dateien zu listen. Erwartetes Resultat:
+
+```sh
+./contact.html
+./index.html
+```
+
+9. Inhalte durchsuchen: Benutze `grep`, um in allen HTML-Dateien nach dem Wort "Welcome" zu suchen. Erwartetes Resultat:
+
+```sh
+index.html:    <h1>Welcome CAS Cloud</h1>
 ```
 
 ## Übung 2 - Software installieren
@@ -103,6 +116,7 @@ Bonus: Schaue in der webfs Dokumentation nach, was die einzelnen Flags (-F, -p) 
 ```
 
 4. Mache ein HTTP Request mit `curl` auf `contact.html`. Erwartetes Resultat:
+
 ```sh
 <!DOCTYPE html>
 <html>
