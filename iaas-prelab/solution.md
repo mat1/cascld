@@ -77,7 +77,7 @@ sudo apt install webfs
 
 ```sh
 cd casprelab
-http-server .
+webfsd -F -p 8080 -d -f index.html -r .
 ```
 
 2. Öffne die Webseite im Browser http://localhost:8080/
