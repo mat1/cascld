@@ -57,18 +57,10 @@ gcloud services enable redis.googleapis.com
 gcloud redis instances create bid-app-redis --region europe-west6
 ```
 
-## 4. Serverless VPC Access erstellen
+## 4. Bid App mit Redis verbinden
 
-Damit Cloud Run auf den Memorystore zugreiffen kann, benötigen wir Serverless VPC Access (https://cloud.google.com/vpc/docs/configure-serverless-vpc-access?hl=en).
-
-```sh
-# Aktiviere VPC Access
-gcloud services enable vpcaccess.googleapis.com
-
-gcloud compute networks vpc-access connectors create bid-app-connector --region europe-west6 --range 10.8.0.0/28
-```
-
-Anschliessend kann die Bid App angepasst werden, dass dieser Connector verwendet wird. Zudem muss die Umgebungsvariable `REDIS_HOST` gesetzt werden.
+1. Bid App anapssen, damit Sie auf VPC zugreiffen kann (im Tab Netzwerk)
+2. Umgebungsvariable `REDIS_HOST` setzen
 
 ## Bonus: 5. Lasttest
 
