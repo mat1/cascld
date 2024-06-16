@@ -24,9 +24,9 @@ gcloud auth configure-docker
 gcloud services enable containerregistry.googleapis.com
 
 # Hole das Image vom Dockerhub
-docker pull fluescher/cascld
+docker pull ghcr.io/dsi-engineering-ag/kubernetes-hands-on-sampleapp:latest
 
-docker tag fluescher/cascld gcr.io/PROJECTID/bid-app
+docker tag ghcr.io/dsi-engineering-ag/kubernetes-hands-on-sampleapp:latest gcr.io/PROJECTID/bid-app
 
 # Pushe das Image in die Google Container Registry
 docker push gcr.io/PROJECTID/bid-app

@@ -6,8 +6,8 @@ After=docker.service
 Restart=always
 ExecStartPre=-/usr/bin/docker kill bid-service
 ExecStartPre=-/usr/bin/docker rm bid-service
-ExecStartPre=-/usr/bin/docker pull fluescher/cascld:latest
-ExecStartPre=/usr/bin/docker create --name bid-service -p 80:80 -it fluescher/cascld:latest
+ExecStartPre=-/usr/bin/docker pull ghcr.io/dsi-engineering-ag/kubernetes-hands-on-sampleapp:latest
+ExecStartPre=/usr/bin/docker create --name bid-service -p 80:80 -it ghcr.io/dsi-engineering-ag/kubernetes-hands-on-sampleapp:latest
 ExecStart=/usr/bin/docker start -a bid-service
 ExecStop=/usr/bin/docker stop -t 10 bid-service
 

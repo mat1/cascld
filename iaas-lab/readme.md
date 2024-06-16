@@ -41,7 +41,7 @@ sudo usermod -a -G docker ec2-user
 6. Bid Applikation Starten
 
 ```sh
-docker run -p 80:80 -d fluescher/cascld
+docker run -p 80:80 -d ghcr.io/dsi-engineering-ag/kubernetes-hands-on-sampleapp:latest
 ```
 
 7. Prüfen ob die Anwendung läuft `curl localhost`
@@ -114,7 +114,7 @@ Beobachtet was passiert, wenn ihr Last generiert und die Last wieder zurück geh
 
 Das Load Balancing müsste nun funkionieren, aber die Anwendungen haben keine gemeinsame Datenbank und speichern die Daten zur Zeit lokal im Memory. Ziel dieser Übung ist es, dass die Bid App die Daten in eine gemeinsame Redis Datenbank speichert.
 
-Bei der Bid App kann über eine Umgebungsvariable gesteuert werden, welche Datenbank verwendet werden soll. Siehe https://github.com/fluescher/cascld-kubernetes/blob/master/sampleapp/docker-compose.yml
+Bei der Bid App kann über eine Umgebungsvariable gesteuert werden, welche Datenbank verwendet werden soll. Siehe https://github.com/dsi-engineering-ag/kubernetes-hands-on/blob/main/sampleapp/docker-compose.yml
 
 Um Redis in der AWS Cloud zu betreiben, könnt ihr z.B. Amazon ElastiCache verwenden https://aws.amazon.com/de/elasticache/
 Dabei müsst ihr beim Erstellen **Design your own cache** und **cache.t2.micro** als Node type wählen.
@@ -129,7 +129,7 @@ nc -v YOUR-REDIS-CLUSTER.cache.amazonaws.com 6379
 Die Bid App könnt ihr mit diesen Parameter starten, damit eine Verbindung zum Redis Cluster hergestellt wird.
 
 ```sh
-docker run -e REDIS_HOST=YOUR-REDIS-CLUSTER.cache.amazonaws.com -p 80:80 -d fluescher/cascld
+docker run -e REDIS_HOST=YOUR-REDIS-CLUSTER.cache.amazonaws.com -p 80:80 -d ghcr.io/dsi-engineering-ag/kubernetes-hands-on-sampleapp:latest
 ```
 
 Wenn ihr die Verbindung erfolgreich getestet habt, könnt ihr die Datei `bid-service.service` anpassen, damit die Anwendung beim Start eine Verbindungs zum Redis Cluster herstellt.

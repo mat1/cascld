@@ -36,5 +36,5 @@ Definiert ein Redis AUTH Token: z.B. `MY-REDIS-AUTH-TOKEN`
 Konfiguriert die Bid App, damit die Verbindung zum neuen Redis Cluster hergestellt wird. Ihr könnt das AUTH Token als Umgebungsvariable übergeben:
 
 ```sh
-docker run -p 8080:80 -e REDIS_HOST=master.bid-redis-secure.f76nxh.euc1.cache.amazonaws.com -e REDIS_AUTH_TOKEN=MY-REDIS-AUTH-TOKEN fluescher/cascld:latest
+docker run -p 8080:80 -e REDIS_HOST=master.bid-redis-secure.f76nxh.euc1.cache.amazonaws.com -e REDIS_AUTH_TOKEN=MY-REDIS-AUTH-TOKEN ghcr.io/dsi-engineering-ag/kubernetes-hands-on-sampleapp:latest
 ```
