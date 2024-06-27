@@ -31,7 +31,7 @@ In dieser Übung werden zwei Funktionen erstellt:
 2. Erstelle eine Funktion mit dem Namen `get-highest-bid`
 3. Environment: `2nd gen`
 4. Region: `europe-west6` Schweiz :)
-5. `Allow unauthenticated invocations` und `HTTP` als Trigger type
+5. `Allow unauthenticated invocations` und `HTTPS` als Trigger type
 6. Runtime: `Node.js 18`
 7. Der Quellcode für die Funktion ist unten aufgeführt:
 
