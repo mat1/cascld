@@ -64,7 +64,9 @@ gcloud sql connect pcws-db --user=postgres --quiet
 SELECT * FROM pcws_codes;
 ```
 
-## Connect to DB - Public IP
+## Connect to DB - Public IP (prefer private IP)
+
+Enable `Connect to a VPC for outbound traffic`
 
 ```sh
 # jdbc:postgresql://34.65.42.61:5432/postgres
