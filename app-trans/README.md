@@ -80,7 +80,7 @@ gcloud run deploy pcws \
   --allow-unauthenticated
 ```
 
-## Connect to DB over VPC (Wahrscheinlich jetzt ohne vpc connector möglich)
+## Connect to DB over VPC (Ohne VPC Connector möglich)
 
 ```sh
 # Create VPC connector
@@ -110,7 +110,9 @@ https://cloud.google.com/run/docs/using-gcp-services#connecting_to_services_in_c
 
 Fuse - Mount Cloud Storage (Similar to S3)
 
-### Write to Cloud Storage Bucket
+### Write to Cloud Storage Bucket (Kann jetzt relativ einfach gemacht werden)
+
+![cloud-run-volume](./cloud-run-mount-volume.png)
 
 https://cloud.google.com/run/docs/configuring/services/cloud-storage-volume-mounts#gcloud_1
 
