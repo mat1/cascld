@@ -9,7 +9,7 @@ Versucht mit Hilfe von Security Groups die Kommunikation zwischen den einzelnen 
 ## Protect Data at Transport - HTTPS
 
 Die Kommunikation zwischen den Benutzern und der Bid App ist unverschlüsselt über HTTP. Ziel dieser Übung ist es, dass die Webseite über HTTPS ausgeliefert wird.
-Ihr könnt dazu das Wildcard Zertifikat `*.cascld.com` verwenden. Anschliessend könnt ihr das Zertifikat im Application Load Balancer eintragen. Dazu müsst ihr einen neuen Listener erstellen.
+Ihr könnt dazu das Wildcard Zertifikat `*.cascld2025.com` verwenden. Anschliessend könnt ihr das Zertifikat im Application Load Balancer eintragen. Dazu müsst ihr einen neuen Listener erstellen.
 
 Nun könnt ihr eure Anwendung über https:// aufrufen. Im Browser solltet ihr eine Warnung sehen, dass das Zertifikat ungültig ist. Warum ist dies so?
 
@@ -36,5 +36,5 @@ Definiert ein Redis AUTH Token: z.B. `MY-REDIS-AUTH-TOKEN`
 Konfiguriert die Bid App, damit die Verbindung zum neuen Redis Cluster hergestellt wird. Ihr könnt das AUTH Token als Umgebungsvariable übergeben:
 
 ```sh
-docker run -p 8080:80 -e REDIS_HOST=master.bid-redis-secure.f76nxh.euc1.cache.amazonaws.com -e REDIS_AUTH_TOKEN=MY-REDIS-AUTH-TOKEN ghcr.io/dsi-engineering-ag/kubernetes-hands-on-sampleapp:latest
+docker run -p 8080:80 -e REDIS_HOST=clustercfg.bid-app-redis.iwuwd5.euc1.cache.amazonaws.com -e REDIS_AUTH_TOKEN=MY-REDIS-AUTH-TOKEN ghcr.io/dsi-engineering-ag/kubernetes-hands-on-sampleapp:latest
 ```
