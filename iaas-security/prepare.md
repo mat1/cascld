@@ -2,7 +2,7 @@
 
 1. IaaS Lab am Morgen
 
-2. Domain bei Route 53 registrieren `cascld.de`
+2. Domain bei Route 53 registrieren `cascld2025.com`
 
 3. Wildcard Zertifikat im AWS Certificate Manager erstellen
 
