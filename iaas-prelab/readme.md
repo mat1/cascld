@@ -19,10 +19,14 @@ wsl --install
 
 > Alternative: Linux VM oder Git Bash https://gitforwindows.org/ 
 
+## Mac
+
+Mac User können für die Übungen das Mac Termnial verwenden.
+
 ## Hilfe zu Unix Befehlen
 
 ```sh
-# Show short manual for command
+# Show short manual for command (does not work for Mac)
 cat --help
 ```
 
@@ -35,7 +39,7 @@ man cat
 
 tldr (Too long; didn't read) bietet gute und kurze Erklärungen zu den meisten Linux Befehlen.
 
-* tldr https://tldr.ostera.io/
+* tldr https://tldr.inbrowser.app/
 * tldr installieren https://github.com/tldr-pages/tldr
 
 ## Übung 1 - Umgang mit Dateien
