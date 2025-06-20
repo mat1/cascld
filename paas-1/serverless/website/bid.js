@@ -1,5 +1,5 @@
-const getHighestBidUrl = "https://YOUR-CLOUD-FUNCTION-URL";
-const bidUrl = "https://YOUR-CLOUD-FUNCTION-URL";
+const getHighestBidUrl = "https://get-highest-bid-882345073333.europe-west6.run.app";
+const bidUrl = "https://bid-882345073333.europe-west6.run.app";
 
 const getHighestBid = () => {
   fetch(getHighestBidUrl)
