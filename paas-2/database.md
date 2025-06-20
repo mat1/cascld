@@ -10,6 +10,7 @@ Erstelle eine neue hochverfügbare Datenbank. Dazu musst du folgende Befehle in 
 
 ```sh
 gcloud services enable sql-component.googleapis.com
+gcloud services enable sqladmin.googleapis.com
 
 # Datenbank erstellen
 # High Availabilty - Automatic failover to another zone within your selected region. Recommended for production instances. Increases cost.
