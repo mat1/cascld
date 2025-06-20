@@ -15,8 +15,8 @@ Erstelle ein neues Google Cloud Projekt mit dem Namen `cascld`.
 Die Daten in dieser Übung werden in einem Google Datastore (NoSQL Datenbank) gespeichert, weil dies einfacher ist, als der Zugriff auf Redis.
 
 1. Suche nach Datastore
-2. Erstelle ein Google Datastore (Select `DATASTORE MODE`)
-3. Location `eur3` auswählen
+2. Erstelle ein Google Datastore (Firestore mit Datastore-Kompatibilität / Firestore with Datastore compatibility)
+3. Location `europe-west6` auswählen
 
 ## 3. Google Functions erstellen
 
@@ -27,24 +27,24 @@ In dieser Übung werden zwei Funktionen erstellt:
 
 ### Get Highest Bid Function
 
-1. Suche nach Cloud Function
-2. Erstelle eine Funktion mit dem Namen `get-highest-bid`
-3. Environment: `2nd gen`
+1. Suche nach Cloud Run Function
+2. Erstelle einen Service / Funktion mit dem Namen `get-highest-bid`
+3. Wähle `Use an inline editor to create a function`
 4. Region: `europe-west6` Schweiz :)
 5. `Allow unauthenticated invocations` und `HTTPS` als Trigger type
-6. Runtime: `Node.js 18`
+6. Runtime: `Node.js 22`
 7. Der Quellcode für die Funktion ist unten aufgeführt:
 
 **index.js**
 
 ```js
-const functions = require('@google-cloud/functions-framework');
+const functions = require("@google-cloud/functions-framework");
 const { Datastore } = require("@google-cloud/datastore");
 
 // Verwendet Datastore des Projekts
 const datastore = new Datastore();
 
-functions.http('getHighestBid', async (req, res) => {
+functions.http("getHighestBid", async (req, res) => {
   console.log("getHighestBid", req);
 
   const key = datastore.key(["bids", "bid"]);
@@ -58,10 +58,10 @@ functions.http('getHighestBid', async (req, res) => {
     hostname: "Google Functions",
   };
 
-  res.set("Content-Type", "application/json");
-  res.set("Access-Control-Allow-Origin", "*");
-  res.set("Access-Control-Allow-Methods", "GET, POST");
-  res.status(200).send(result);
+  res.setHeader("Content-Type", "application/json");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST");
+  res.status(200).send(JSON.stringify(result));
 });
 ```
 
@@ -70,8 +70,8 @@ functions.http('getHighestBid', async (req, res) => {
 ```json
 {
   "dependencies": {
-    "@google-cloud/functions-framework": "3.0.0",
-    "@google-cloud/datastore": "7.5.1"
+    "@google-cloud/functions-framework": "4.0.0",
+    "@google-cloud/datastore": "10.0.1"
   }
 }
 ```
@@ -94,17 +94,18 @@ Der Code dazu ist unten aufgeführt. Bei Function to execute (Entry point) muss 
 **index.js**
 
 ```js
-const functions = require('@google-cloud/functions-framework');
+const functions = require("@google-cloud/functions-framework");
 const { Datastore } = require("@google-cloud/datastore");
 
 const datastore = new Datastore();
 
-functions.http('bid', async (req, res) => {
+functions.http("bid", async (req, res) => {
   const bid = req.body;
 
   console.log("Bid from user:", bid);
 
   const key = datastore.key(["bids", "bid"]);
+
   const entity = {
     key: key,
     data: bid,
@@ -112,11 +113,10 @@ functions.http('bid', async (req, res) => {
 
   await datastore.save(entity);
 
-  res.set("Content-Type", "application/json");
-  res.set("Access-Control-Allow-Origin", "*");
-  res.set("Access-Control-Allow-Methods", "GET, POST");
-  res.set("Access-Control-Allow-Headers", "Content-Type");
-  res.status(200).send(bid);
+  res.setHeader("Content-Type", "application/json");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST");
+  res.status(200).send(JSON.stringify(bid));
 });
 ```
 
@@ -125,8 +125,8 @@ functions.http('bid', async (req, res) => {
 ```json
 {
   "dependencies": {
-    "@google-cloud/functions-framework": "3.0.0",
-    "@google-cloud/datastore": "7.5.1"
+    "@google-cloud/functions-framework": "4.0.0",
+    "@google-cloud/datastore": "10.0.1"
   }
 }
 ```
@@ -167,9 +167,9 @@ Nun sollte die Webseite lokal funktionieren.
 1. Suche nach `Cloud Storage`
 2. Erstelle einen Bucket mit dem Namen `cascld`
 3. Deaktivere `Prevent public access` damit die Daten aus dem Internet zugreifbar sind
-3. Ändere die Berechtiung das Jeder den Inhalt des Buckets lesen kann
-4. Permissions Tab -> Add member -> `allUsers` und Role `Storage Object Viewer`
-5. Lade die Webseite hoch
+4. Ändere die Berechtiung das Jeder den Inhalt des Buckets lesen kann
+5. Permissions Tab -> Add member -> `allUsers` und Role `Storage Object Viewer`
+6. Lade die Webseite hoch
 
 Die Bid App sollte nun über das Internet erreichbar sein.
 

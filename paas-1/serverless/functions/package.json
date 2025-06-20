@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@google-cloud/functions-framework": "3.0.0",
-    "@google-cloud/datastore": "7.5.1"
+    "@google-cloud/functions-framework": "4.0.0",
+    "@google-cloud/datastore": "10.0.1"
   }
 }
