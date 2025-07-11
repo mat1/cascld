@@ -7,3 +7,4 @@
 4. [Serverless](./paas-1/serverless.md)
 5. [Cloud Run](./paas-1/cloud-run.md)
 6. [Database](./paas-2/database.md)
+7. [Infrastructure as Code](./iac/readme.md)
