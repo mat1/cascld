@@ -1,0 +1,1 @@
+project = "cas-terraform-bidapp"

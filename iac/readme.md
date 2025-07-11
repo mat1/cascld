@@ -6,8 +6,8 @@ In der ersten Übung lernst du, wie du das Terraform CLI und das Google Cloud CL
 
 ## 2. Bid App mit Terraform (Guided Journey)
 
-Link zur Übung
+Die Übung findest du unter [Bid App mit Terraform](bidapp.md)
 
-## 3. Automating App Trans Deployment mit Terraform (Adventurous Journey)
+## 3. App Trans mit Terraform (Adventurous Journey)
 
 Link zur Übung
