@@ -8,3 +8,15 @@ variable "region" {
   type        = string
   default     = "europe-west6"
 }
+
+variable "root_password" {
+  description = "Root password for the MySQL instance"
+  type        = string
+  sensitive   = true
+}
+
+variable "bidapp_password" {
+  description = "Password for the bidapp database user"
+  type        = string
+  sensitive   = true
+}

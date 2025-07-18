@@ -1,6 +1,12 @@
 # Bid App mit Terraform
 
-Architecture
+Das Management der Bid App möchte die Verwaltung der Infrastruktur professionalisieren und automatisieren. Deshalb hat es das Bid App Team beauftragt, Infrastructure as Code (IaC) einzusetzen. Das Team hat sich entschieden, dafür **Terraform** zu verwenden.
+
+## Ziel
+
+Das Ziel dieser Übung ist es, die **Bid App** mithilfe von Terraform in der **Google Cloud Platform (GCP)** zu deployen – wie in der untenstehenden Abbildung dargestellt.
+
+Architecture Image
 
 ## 0. Neues Projekt
 
@@ -17,7 +23,7 @@ Damit eine Anwendung über Google Cloud Run deployt werden kann, muss das Docker
 gcloud auth configure-docker
 ```
 
-3. Dockerimage in die Cloud Registry pushen
+3. Dockerimage in die Cloud Registry pushen. Dazu `PROJECTID` mit eurer GCP Project ID ersetzen.
 
 ```sh
 # Aktiviere die Container Registry
@@ -35,7 +41,7 @@ docker push gcr.io/PROJECTID/bid-app
 Aktiviere weitere benötigte Services. Dieser Schritt wäre auch über Terraform möglich.
 
 ```sh
-gcloud services enable run.googleapis.com cloudbuild.googleapis.com
+gcloud services enable run.googleapis.com cloudbuild.googleapis.com sql-component.googleapis.com sqladmin.googleapis.com
 ```
 
 ## 2. Cloud Run
@@ -59,7 +65,7 @@ variable "region" {
 3. Erstelle eine Datei `terraform.tfvars` mit diesem Inhalt:
 
 ```terraform
-project = "cas-terraform-bidapp"
+project = "PROJECTID"
 ```
 
 4. Erstelle die Datei `main.tf` mit diesem Inhalt:
@@ -121,6 +127,72 @@ terraform apply
 Anschliessend sollte die Bid App unter der URL erreichbar sein.
 
 ## 3. Database
+
+Im nächsten Schritt geht es darum, analog zu [PaaS Database](./../paas-2/database.md) eine MySQL Datenbank mit dem entsprechenden Datenbank Schema zu erstellen. Natürlich mit Terraform anstatt über das Google Cloud CLI.
+
+1. Erstelle zwei neue Variablen in der Datei `variables.tf`:
+
+```terraform
+variable "root_password" {
+  description = "Root password for the MySQL instance"
+  type        = string
+  sensitive   = true
+}
+
+variable "bidapp_password" {
+  description = "Password for the bidapp database user"
+  type        = string
+  sensitive   = true
+}
+```
+
+2. Erstelle die Datei `database.tf` mit diesem Inhalt:
+
+```terraform
+resource "google_sql_database_instance" "bid_db" {
+  name             = "bid-db"
+  database_version = "MYSQL_8_0"
+  region           = var.region
+
+  settings {
+    tier              = "db-f1-micro"
+    availability_type = "REGIONAL"
+
+    backup_configuration {
+      # Required for HA Setup
+      binary_log_enabled = true
+      enabled            = true
+    }
+
+    ip_configuration {
+      ipv4_enabled = true
+    }
+  }
+
+  root_password = var.root_password
+}
+
+resource "google_sql_database" "bidapp" {
+  name     = "bidapp"
+  instance = google_sql_database_instance.bid_db.name
+}
+
+resource "google_sql_user" "bidapp_user" {
+  name     = "bidapp"
+  instance = google_sql_database_instance.bid_db.name
+  password = var.bidapp_password
+}
+```
+
+3. Erstelle die Datenbank mit:
+
+```sh
+terraform apply
+```
+
+> Gebe das Passowrt für den root und bidapp Benutzer an:
+
+4. Importiere das Bidapp Datenbank Schema. Das Importieren des Datenbank Schemas ist nicht direkt über Terraform möglich. Du kannst dazu die selben maneullen Schritte verwenden wie hier beschrieben: [PaaS Database](./../paas-2/database.md)
 
 ## 4. Connect Cloud Run to Database
 
