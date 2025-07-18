@@ -18,8 +18,27 @@ resource "google_cloud_run_service" "default" {
 
   template {
     spec {
+      service_account_name = google_service_account.bid_app_sa.email
+
       containers {
         image = "gcr.io/${var.project}/bid-app:latest"
+
+        env {
+          name  = "MYSQL_UNIX_SOCKET"
+          value = "/cloudsql/${google_sql_database_instance.bid_db.connection_name}"
+        }
+        env {
+          name  = "MYSQL_PASSWORD"
+          # Use secret manager for real setups
+          value = "password123" 
+        }
+      }
+    }
+
+    # Use cloud SQL auth proxy
+    metadata {
+      annotations = {
+        "run.googleapis.com/cloudsql-instances" = google_sql_database_instance.bid_db.connection_name
       }
     }
   }
@@ -30,7 +49,7 @@ resource "google_cloud_run_service" "default" {
   }
 }
 
-# Service Account for Bid App (Allows bid app to connect to DB)
+# Service account for bid app (allows bid app to connect to DB)
 resource "google_service_account" "bid_app_sa" {
   account_id   = "bid-app-sa"
   display_name = "Bid App Service Account"

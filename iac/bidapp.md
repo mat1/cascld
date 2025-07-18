@@ -124,7 +124,7 @@ terraform init
 terraform apply
 ```
 
-Anschliessend sollte die Bid App unter der URL erreichbar sein.
+Anschliessend sollte die Bid App unter der URL im output erreichbar sein.
 
 ## 3. Database
 
@@ -190,9 +190,73 @@ resource "google_sql_user" "bidapp_user" {
 terraform apply
 ```
 
-> Gebe das Passowrt für den root und bidapp Benutzer an:
-
-4. Importiere das Bidapp Datenbank Schema. Das Importieren des Datenbank Schemas ist nicht direkt über Terraform möglich. Du kannst dazu die selben maneullen Schritte verwenden wie hier beschrieben: [PaaS Database](./../paas-2/database.md)
+4. Importiere das Bidapp Datenbank Schema. Das Importieren des Datenbank Schemas ist nicht direkt über Terraform möglich. Du kannst dazu die selben  Schritte verwenden wie hier beschrieben: [PaaS Database](./../paas-2/database.md)
 
 ## 4. Connect Cloud Run to Database
 
+Im lezten Schritt geht es darum die Bid App mit der Bid App DB zu verbinden. Dazu sind folgende Schritte notwendig:
+
+1. Erstelle einen Service Account in der Datei `main.tf`:
+
+```terraform
+# Service account for bid app (allows bid app to connect to DB)
+resource "google_service_account" "bid_app_sa" {
+  account_id   = "bid-app-sa"
+  display_name = "Bid App Service Account"
+}
+
+resource "google_project_iam_member" "cloudsql_client_role" {
+  role    = "roles/cloudsql.client"
+  project = var.project
+  member  = "serviceAccount:${google_service_account.bid_app_sa.email}"
+}
+```
+
+2. Passe die Bid App Konfiguration in der Datei `main.tf` entsprechend an:
+
+```terraform
+resource "google_cloud_run_service" "default" {
+  name     = "bidapp"
+  location = var.region
+
+  template {
+    spec {
+      service_account_name = google_service_account.bid_app_sa.email
+
+      containers {
+        image = "gcr.io/${var.project}/bid-app:latest"
+
+        env {
+          name  = "MYSQL_UNIX_SOCKET"
+          value = "/cloudsql/${google_sql_database_instance.bid_db.connection_name}"
+        }
+        env {
+          name  = "MYSQL_PASSWORD"
+          # Use secret manager for real setups
+          value = "password123" 
+        }
+      }
+    }
+
+    # Use cloud SQL auth proxy
+    metadata {
+      annotations = {
+        "run.googleapis.com/cloudsql-instances" = google_sql_database_instance.bid_db.connection_name
+      }
+    }
+  }
+
+  traffic {
+    percent         = 100
+    latest_revision = true
+  }
+}
+```
+
+3. Führe die geplanten Änderungen an der Cloud-Infrastruktur aus:
+
+```sh
+terraform apply
+```
+
+Kontroliere ob die Bid App nun Einträge in die Bid App Datenbank schreibt.
