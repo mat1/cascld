@@ -13,6 +13,6 @@ Die Anleitung findest du hier: [Terraform Tutorial für GCP](https://developer.h
 In dieser Übung wirst du mithilfe von Terraform eine Beispielanwendung (Bid App) auf GCP aufbauen.  
 Die vollständige Anleitung findest du hier: [Bid App mit Terraform](bidapp.md)
 
-## 3. App Trans mit Terraform (Adventurous Journey)
+## 3. PC-WS mit Terraform (Adventurous Journey)
 
-Details zur Übung: [PC-WS mit Terraform](./app-trans.md)
+Details zur Übung: [PC-WS mit Terraform](./pcws.md)
