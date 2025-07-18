@@ -30,6 +30,10 @@ resource "google_cloud_run_v2_service" "pcws" {
         value = "true"
       }
       env {
+        name = "USE_ACCOUNT_SERVICE_MOCK"
+        value = "true"
+      }
+      env {
         name  = "PCWS_DATASOURCE_JDBC_URL"
         value = "jdbc:postgresql://${google_sql_database_instance.pcws-db.private_ip_address}:5432/postgres"
       }
@@ -44,9 +48,8 @@ resource "google_cloud_run_v2_service" "pcws" {
     }
     vpc_access {
       network_interfaces {
-        network    = "default"
-        subnetwork = "default"
-        tags       = ["tag1", "tag2", "tag3"]
+        network    = var.vpc_name
+        subnetwork = var.vpc_name
       }
     }
   }
@@ -58,7 +61,7 @@ resource "google_cloud_run_service_iam_member" "invoker" {
   location = var.region
   service  = google_cloud_run_v2_service.pcws.name
   role     = "roles/run.invoker"
-  member   = "allUsers"  # Allow public access
+  member   = "allUsers" # Allow public access
 }
 
 output "cloud_run_url" {
