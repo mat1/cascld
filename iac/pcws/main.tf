@@ -28,8 +28,8 @@ resource "google_cloud_run_v2_service" "pcws" {
         value = "real"
       }
       env {
-        name  = "USE_DATALOG_SERVICE_MOCK"
-        value = "true"
+        name  = "PCWS_DATALOG_DIRECTORY"
+        value = "/mnt/pcws-bucket"
       }
       env {
         name  = "USE_ACCOUNT_SERVICE_MOCK"
