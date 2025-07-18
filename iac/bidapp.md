@@ -27,7 +27,7 @@ gcloud auth configure-docker
 
 ```sh
 # Aktiviere die Container Registry
-gcloud services enable containerregistry.googleapis.com
+gcloud services enable artifactregistry.googleapis.com
 
 # Hole das Image vom Dockerhub
 docker pull ghcr.io/dsi-engineering-ag/kubernetes-hands-on-sampleapp:latest
