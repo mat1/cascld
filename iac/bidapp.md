@@ -6,13 +6,13 @@ Das Management der Bid App möchte die Verwaltung der Infrastruktur professional
 
 Das Ziel dieser Übung ist es, die **Bid App** mithilfe von Terraform in der **Google Cloud Platform (GCP)** zu deployen – wie in der untenstehenden Abbildung dargestellt.
 
-Architecture Image
+![bid-app-diagram](./images/bid-app.png)
 
 ## 0. Neues Projekt
 
 Erstelle ein neues Google Cloud Projekt.
 
-## 1. Push Image und Services aktivieren
+## 1. Docker Image in die Google Cloud Container Registry
 
 Damit eine Anwendung über Google Cloud Run deployt werden kann, muss das Dockerimage in der Google Cloud Registry vorhanden sein.
 
@@ -46,8 +46,9 @@ gcloud services enable run.googleapis.com cloudbuild.googleapis.com sql-componen
 
 ## 2. Cloud Run
 
-1. Erstelle einen Order bidapp.
-2. Erstelle eine Datei `variables.tf` mit diesem Inhalt:
+1. Erstelle den Order `bidapp`. Dieser Order soll für alle Terraform Dateien in dieser Übung verwendet werden.
+
+2. Erstelle die Datei `variables.tf` mit diesem Inhalt:
 
 ```terraform
 variable "project" {
@@ -62,7 +63,7 @@ variable "region" {
 }
 ```
 
-3. Erstelle eine Datei `terraform.tfvars` mit diesem Inhalt:
+3. Erstelle die Datei `terraform.tfvars` mit diesem Inhalt:
 
 ```terraform
 project = "PROJECTID"
@@ -124,7 +125,7 @@ terraform init
 terraform apply
 ```
 
-Anschliessend sollte die Bid App unter der URL im output erreichbar sein.
+Anschliessend sollte die Bid App über die URL welche im Output ausgeben wird erreichbar sein.
 
 ## 3. Database
 
@@ -233,7 +234,7 @@ resource "google_cloud_run_service" "default" {
         env {
           name  = "MYSQL_PASSWORD"
           # Use secret manager for real setups
-          value = "password123" 
+          value = var.bidapp_password
         }
       }
     }
@@ -260,3 +261,8 @@ terraform apply
 ```
 
 Kontroliere ob die Bid App nun Einträge in die Bid App Datenbank schreibt.
+
+## Bonus: 5. Secret Manager
+
+Aktuell ist das Datenbank Passwort als Plaintext ersichtlich. Verwende den Google Cloud Secret Manager für die Verwaltung des Secrets, damit das Passwort nicht mehr als Klartext ersichtlich ist.
+

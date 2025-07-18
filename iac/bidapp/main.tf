@@ -30,7 +30,7 @@ resource "google_cloud_run_service" "default" {
         env {
           name  = "MYSQL_PASSWORD"
           # Use secret manager for real setups
-          value = "password123" 
+          value = var.bidapp_password
         }
       }
     }
