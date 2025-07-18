@@ -30,7 +30,7 @@ docker push gcr.io/cas-pcws/pcws
 3. Enable services
 
 ```sh
-gcloud services enable run.googleapis.com cloudbuild.googleapis.com sql-component.googleapis.com sqladmin.googleapis.com servicenetworking.googleapis.com compute.googleapis.com
+gcloud services enable run.googleapis.com cloudbuild.googleapis.com sql-component.googleapis.com sqladmin.googleapis.com servicenetworking.googleapis.com compute.googleapis.com cloudscheduler.googleapis.com
 ```
 
 ## 2. Import Databse Schema
@@ -53,3 +53,6 @@ docker tag transfer-logs gcr.io/cas-pcws/transfer-logs
 docker push gcr.io/cas-pcws/transfer-logs
 ```
 
+## Terraform Solution 
+
+See folder pcws.
