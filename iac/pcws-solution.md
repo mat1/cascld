@@ -1,8 +1,8 @@
 # PC-WS - Google Cloud Solution
 
-## Create Docker Image
+## 1. Create Docker Image
 
-0. More infos [app-trans](./../app-trans/README.md)
+0. More Infos [app-trans](./../app-trans/README.md)
 1. Download Artifacts: https://github.com/SamuelBucheliZ/bfh-pcws
 
 ```sh
@@ -33,5 +33,23 @@ docker push gcr.io/cas-pcws/pcws
 gcloud services enable run.googleapis.com cloudbuild.googleapis.com sql-component.googleapis.com sqladmin.googleapis.com servicenetworking.googleapis.com compute.googleapis.com
 ```
 
-## Terraform
+## 2. Import Databse Schema
+
+```sh
+gcloud sql connect pcws-db --database=pcws-db --user=pcws --quiet
+
+# SQL script copy & paste and execute
+
+# Test
+SELECT * FROM pcws_codes;
+```
+
+## 3. Create Docker Image for Transfer Logs
+
+```sh
+# in app-trans/transfer/
+docker build . -t transfer-logs
+docker tag transfer-logs gcr.io/cas-pcws/transfer-logs
+docker push gcr.io/cas-pcws/transfer-logs
+```
 
