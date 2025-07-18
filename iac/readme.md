@@ -15,4 +15,4 @@ Die vollständige Anleitung findest du hier: [Bid App mit Terraform](bidapp.md)
 
 ## 3. App Trans mit Terraform (Adventurous Journey)
 
-Link zur Übung
+Details zur Übung: [PC-WS mit Terraform](./app-trans.md)
