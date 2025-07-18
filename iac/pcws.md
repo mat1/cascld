@@ -8,7 +8,7 @@ Daher wurde entschieden, die Migration der Anwendung **PC-WS** mittels **Terrafo
 Das Ziel dieser Übung ist es, die Anwendung [PC-WS](https://github.com/SamuelBucheliZ/bfh-pcws) mithilfe von **Terraform** in eine Cloud-Umgebung zu migrieren (z.B. in die Google Cloud).  
 Als Referenz dient das folgende Architekturdiagramm:
 
-**Architekturdiagramm einfügen**
+![pcws](./images/pcws.drawio.png)
 
 > Hinweis: Ihr müsst nicht exakt dieser Architektur folgen. Auch ein anderer Cloud-Provider als **Google Cloud** ist möglich.  
 > Das Management vertraut auf eure Cloud-Expertise.
