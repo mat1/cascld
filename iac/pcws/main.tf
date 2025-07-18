@@ -12,38 +12,55 @@ provider "google" {
   region  = var.region
 }
 
-resource "google_cloud_run_service" "default" {
+resource "google_cloud_run_v2_service" "pcws" {
   name     = "pcws"
   location = var.region
+  ingress  = "INGRESS_TRAFFIC_ALL"
 
   template {
-    spec {
-      containers {
-        image = "gcr.io/${var.project}/pcws:latest"
+    containers {
+      image = "gcr.io/${var.project}/pcws:latest"
 
-        env {
-          name  = "SPRING_PROFILES_ACTIVE"
-          value = "mock"
-        }
+      env {
+        name  = "SPRING_PROFILES_ACTIVE"
+        value = "real"
+      }
+      env {
+        name  = "USE_DATALOG_SERVICE_MOCK"
+        value = "true"
+      }
+      env {
+        name  = "PCWS_DATASOURCE_JDBC_URL"
+        value = "jdbc:postgresql://${google_sql_database_instance.pcws-db.private_ip_address}:5432/postgres"
+      }
+      env {
+        name  = "PCWS_DATASOURCE_USERNAME"
+        value = "pcws"
+      }
+      env {
+        name  = "PCWS_DATASOURCE_PASSWORD"
+        value = var.pcws_password
       }
     }
-  }
-
-  traffic {
-    percent         = 100
-    latest_revision = true
+    vpc_access {
+      network_interfaces {
+        network    = "default"
+        subnetwork = "default"
+        tags       = ["tag1", "tag2", "tag3"]
+      }
+    }
   }
 }
 
 # Allow unauthenticated access
-resource "google_cloud_run_service_iam_member" "noauth" {
-  location = google_cloud_run_service.default.location
+resource "google_cloud_run_service_iam_member" "invoker" {
   project  = var.project
-  service  = google_cloud_run_service.default.name
+  location = var.region
+  service  = google_cloud_run_v2_service.pcws.name
   role     = "roles/run.invoker"
-  member   = "allUsers"
+  member   = "allUsers"  # Allow public access
 }
 
 output "cloud_run_url" {
-  value = google_cloud_run_service.default.status[0].url
+  value = google_cloud_run_v2_service.pcws.uri
 }
