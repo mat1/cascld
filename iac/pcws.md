@@ -25,6 +25,8 @@ Zur groben Orientierung könnt ihr euch an folgendem Ablauf orientieren:
 5. **PC-WS mit dem Storage verbinden**
 6. **Transfer-Job einrichten**, um Daten aus dem Bucket zu verarbeiten
 
+> Wie bei der App Trans Übung kanst du den [PC-WS Viewer](https://samuelbucheliz.github.io/bfh-pcws-viewer/) verwenden fürs Testing.
+
 ## Bonus: Alerting & Monitoring
 
 Das Management möchte die **Verfügbarkeit von PC-WS** überwachen, um das **SLA** einzuhalten.  
