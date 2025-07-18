@@ -32,3 +32,6 @@ docker push gcr.io/cas-pcws/pcws
 ```sh
 gcloud services enable run.googleapis.com cloudbuild.googleapis.com sql-component.googleapis.com sqladmin.googleapis.com
 ```
+
+## Terraform
+
