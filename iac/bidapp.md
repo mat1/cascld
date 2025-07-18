@@ -6,7 +6,7 @@ Das Management der Bid App möchte die Verwaltung der Infrastruktur professional
 
 Das Ziel dieser Übung ist es, die **Bid App** mithilfe von Terraform in der **Google Cloud Platform (GCP)** zu deployen – wie in der untenstehenden Abbildung dargestellt.
 
-![bid-app-diagram](./images/bid-app.png)
+![bid-app-diagram](./images/bid-app.drawio.png)
 
 ## 0. Neues Projekt
 
