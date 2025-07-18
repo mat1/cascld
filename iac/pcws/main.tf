@@ -35,7 +35,7 @@ resource "google_cloud_run_v2_service" "pcws" {
       }
       env {
         name  = "PCWS_DATASOURCE_JDBC_URL"
-        value = "jdbc:postgresql://${google_sql_database_instance.pcws-db.private_ip_address}:5432/postgres"
+        value = "jdbc:postgresql://${google_sql_database_instance.pcws-db.private_ip_address}:5432/pcws-db"
       }
       env {
         name  = "PCWS_DATASOURCE_USERNAME"
