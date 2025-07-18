@@ -9,14 +9,14 @@ variable "region" {
   default     = "europe-west6"
 }
 
-# variable "root_password" {
-#   description = "Root password for the MySQL instance"
-#   type        = string
-#   sensitive   = true
-# }
+variable "vpc_name" {
+  description = "Name of the VPC"
+  type        = string
+  default     = "private-vpc"
+}
 
-# variable "bidapp_password" {
-#   description = "Password for the bidapp database user"
-#   type        = string
-#   sensitive   = true
-# }
+variable "pcws_password" {
+  description = "Password for the pcws database user"
+  type        = string
+  sensitive   = true
+}
