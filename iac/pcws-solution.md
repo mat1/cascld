@@ -14,6 +14,8 @@ docker run -p 8080:8080 -e SPRING_PROFILES_ACTIVE=mock pcws
 
 2. Create New Google Cloud Project and Enable Conatiner Registry
 
+> Use image from https://github.com/SamuelBucheliZ/bfh-pcws/pkgs/container/bfh-pcws
+
 ```sh
 gcloud config set project cas-pcws
 
