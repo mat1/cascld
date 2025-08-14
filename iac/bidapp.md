@@ -259,7 +259,7 @@ resource "google_cloud_run_v2_service" "bid_app" {
 terraform apply
 ```
 
-Kontroliere ob die Bid App nun Einträge in die Bid App Datenbank schreibt.
+Kontrolliere ob die Bid App nun Einträge in die Bid App Datenbank schreibt.
 
 ## Bonus: 5. Secret Manager
 
