@@ -194,7 +194,7 @@ terraform apply
 
 4. Importiere das Bidapp Datenbank Schema. Das Importieren des Datenbank Schemas ist nicht direkt über Terraform möglich. Du kannst dazu die selben  Schritte verwenden wie hier beschrieben: [PaaS Database](./../paas-2/database.md)
 
-Sie dir den Inhalt der `terraform.tfstate` Datei an. In welchem Format ist das Datenbank Benutzer Passwort gespeichert?
+Sieh dir den Inhalt der `terraform.tfstate` Datei an. In welchem Format ist das Datenbank Benutzer Passwort gespeichert?
 
 ## 4. Connect Cloud Run to Database
 
