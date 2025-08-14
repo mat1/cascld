@@ -192,7 +192,7 @@ resource "google_sql_user" "bidapp_user" {
 terraform apply
 ```
 
-4. Importiere das Bidapp Datenbank Schema. Das Importieren des Datenbank Schemas ist nicht direkt über Terraform möglich. Du kannst dazu die selben  Schritte verwenden wie hier beschrieben: [PaaS Database](./../paas-2/database.md)
+4. Importiere das Bidapp Datenbank Schema. Das Importieren des Datenbank Schemas ist nicht direkt über Terraform möglich. Du kannst dazu die selben Schritte verwenden wie hier beschrieben: [PaaS Database](./../paas-2/database.md)
 
 Sieh dir den Inhalt der `terraform.tfstate` Datei an. In welchem Format ist das Datenbank Benutzer Passwort gespeichert?
 
@@ -239,10 +239,18 @@ resource "google_cloud_run_v2_service" "bid_app" {
         name  = "MYSQL_PASSWORD"
         value = var.bidapp_password
       }
+
+      volume_mounts {
+        name       = "cloudsql"
+        mount_path = "/cloudsql"
+      }
     }
 
-    annotations = {
-      "run.googleapis.com/cloudsql-instances" = google_sql_database_instance.bid_db.connection_name
+    volumes {
+      name = "cloudsql"
+      cloud_sql_instance {
+        instances = [google_sql_database_instance.bid_db.connection_name]
+      }
     }
   }
 
@@ -264,4 +272,3 @@ Kontrolliere ob die Bid App nun Einträge in die Bid App Datenbank schreibt.
 ## Bonus: 5. Secret Manager
 
 Aktuell ist das Datenbank Passwort als Plaintext ersichtlich. Verwende den Google Cloud Secret Manager für die Verwaltung des Secrets, damit das Passwort nicht mehr als Klartext ersichtlich ist.
-
