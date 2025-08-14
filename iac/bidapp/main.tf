@@ -12,7 +12,7 @@ provider "google" {
   region  = var.region
 }
 
-resource "google_cloud_run_v2_service" "default" {
+resource "google_cloud_run_v2_service" "bid_app" {
   name     = "bidapp"
   location = var.region
   project  = var.project
@@ -58,13 +58,13 @@ resource "google_project_iam_member" "cloudsql_client_role" {
 
 # Allow unauthenticated access
 resource "google_cloud_run_v2_service_iam_member" "noauth" {
-  location = google_cloud_run_v2_service.default.location
+  location = google_cloud_run_v2_service.bid_app.location
   project  = var.project
-  name     = google_cloud_run_v2_service.default.name
+  name     = google_cloud_run_v2_service.bid_app.name
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
 
 output "cloud_run_url" {
-  value = google_cloud_run_v2_service.default.uri
+  value = google_cloud_run_v2_service.bid_app.uri
 }

@@ -29,5 +29,6 @@ resource "google_sql_database" "bidapp" {
 resource "google_sql_user" "bidapp_user" {
   name     = "bidapp"
   instance = google_sql_database_instance.bid_db.name
+  host     = "%"
   password = var.bidapp_password
 }

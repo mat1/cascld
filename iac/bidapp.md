@@ -41,7 +41,7 @@ docker push gcr.io/PROJECTID/bid-app
 Aktiviere weitere benötigte Services. Dieser Schritt wäre auch über Terraform möglich.
 
 ```sh
-gcloud services enable run.googleapis.com cloudbuild.googleapis.com sql-component.googleapis.com sqladmin.googleapis.com
+gcloud services enable run.googleapis.com cloudbuild.googleapis.com sql-component.googleapis.com sqladmin.googleapis.com cloudresourcemanager.googleapis.com
 ```
 
 ## 2. Cloud Run
@@ -86,7 +86,7 @@ provider "google" {
   region  = var.region
 }
 
-resource "google_cloud_run_v2_service" "default" {
+resource "google_cloud_run_v2_service" "bid_app" {
   name     = "bidapp"
   location = var.region
   project  = var.project
@@ -105,15 +105,15 @@ resource "google_cloud_run_v2_service" "default" {
 
 # Allow unauthenticated access
 resource "google_cloud_run_v2_service_iam_member" "noauth" {
-  location = google_cloud_run_v2_service.default.location
+  location = google_cloud_run_v2_service.bid_app.location
   project  = var.project
-  name     = google_cloud_run_v2_service.default.name
+  name     = google_cloud_run_v2_service.bid_app.name
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
 
 output "cloud_run_url" {
-  value = google_cloud_run_v2_service.default.uri
+  value = google_cloud_run_v2_service.bid_app.uri
 }
 ```
 
@@ -125,6 +125,7 @@ terraform apply
 ```
 
 Anschliessend sollte die Bid App über die URL welche im Output ausgeben wird erreichbar sein.
+Prüfe in der Google Cloud Platform, welche Ressourcen erstellt wurden.
 
 ## 3. Database
 
@@ -180,6 +181,7 @@ resource "google_sql_database" "bidapp" {
 resource "google_sql_user" "bidapp_user" {
   name     = "bidapp"
   instance = google_sql_database_instance.bid_db.name
+  host     = "%"
   password = var.bidapp_password
 }
 ```
@@ -191,6 +193,8 @@ terraform apply
 ```
 
 4. Importiere das Bidapp Datenbank Schema. Das Importieren des Datenbank Schemas ist nicht direkt über Terraform möglich. Du kannst dazu die selben  Schritte verwenden wie hier beschrieben: [PaaS Database](./../paas-2/database.md)
+
+Sie dir den Inhalt der `terraform.tfstate` Datei an. In welchem Format ist das Datenbank Benutzer Passwort gespeichert?
 
 ## 4. Connect Cloud Run to Database
 
@@ -215,7 +219,7 @@ resource "google_project_iam_member" "cloudsql_client_role" {
 2. Passe die Bid App Konfiguration in der Datei `main.tf` entsprechend an:
 
 ```terraform
-resource "google_cloud_run_v2_service" "default" {
+resource "google_cloud_run_v2_service" "bid_app" {
   name     = "bidapp"
   location = var.region
   project  = var.project
