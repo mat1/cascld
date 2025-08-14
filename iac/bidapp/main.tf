@@ -32,10 +32,18 @@ resource "google_cloud_run_v2_service" "bid_app" {
         name  = "MYSQL_PASSWORD"
         value = var.bidapp_password
       }
+
+      volume_mounts {
+        name       = "cloudsql"
+        mount_path = "/cloudsql"
+      }
     }
 
-    annotations = {
-      "run.googleapis.com/cloudsql-instances" = google_sql_database_instance.bid_db.connection_name
+    volumes {
+      name = "cloudsql"
+      cloud_sql_instance {
+        instances = [google_sql_database_instance.bid_db.connection_name]
+      }
     }
   }
 
