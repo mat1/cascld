@@ -1,6 +1,6 @@
 # IaaS Security - Make Bid App Secure
 
-Das Management war vom Bid App Prototyp so begeistert, dass Sie die App zu einer Online Auktions-Plattform ausbauen wollen.
+Das Management war vom Bid App Prototyp so begeistert, dass sie die App zu einer Online-Auktionsplattform ausbauen wollen.
 Natürlich gibt es dadurch viele neue Anforderungen:
 
 - Neu sollen nur noch authentifizierte Benutzer die Bid App verwenden dürfen
@@ -15,5 +15,5 @@ In 2er Gruppen
 
 2. Zeige in der IST-Situation auf, was du ändern würdest, damit die Bid App sicherer wird
 
-3. Schickt euren Vorschlag in den Teamschat.
+3. Schickt euren Vorschlag in den Teams-Chat.
 
