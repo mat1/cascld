@@ -9,7 +9,7 @@ Ziel:
 
 ## Ablauf
 
-Ziel des Labs ist es, die Bid-App (App für Auktionen) in der AWS Cloud zu deplyoen.
+Ziel des Labs ist es, die Bid-App (App für Auktionen) in der AWS Cloud zu deployen.
 Dabei sollen EC2 Instanzen verwendet werden ohne Amazon Container Service oder andere Services.
 
 ![Webapp](bid-app.png "Bid App")
@@ -17,7 +17,7 @@ Dabei sollen EC2 Instanzen verwendet werden ohne Amazon Container Service oder a
 ## 1. Anwendung auf einer Instanz deployen
 
 1. EC2 Instanz erstellen (t2.micro oder t3.micro) z.B. Amazon Linux 2 AMI
-2. Per SSH auf Instanz einloggen dem Benutzer `ec2-user`.
+2. Per SSH auf der Instanz mit dem Benutzer `ec2-user` einloggen.
    Unter Windows z.B. WSL oder Git Bash https://gitforwindows.org/
 3. Docker auf der EC2 Instanz installieren
 
@@ -48,7 +48,7 @@ docker run -p 80:80 -d ghcr.io/dsi-engineering-ag/kubernetes-hands-on-sampleapp:
 
 8. Security Group einrichten damit die Anwendung unter Port 80 erreichbar ist.
 
-9. Webseite sollte nun über das Interent erreichbar sein
+9. Webseite sollte nun über das Internet erreichbar sein
 
 ### Problem
 
@@ -78,7 +78,7 @@ sudo systemctl enable /home/ec2-user/bid-service.service
 
 2. Neue Instanz mit AMI starten
 
-3. Prüfen ob ihr mit dem Browser auf die Webseite kommt. Ihr solltet jezt die Applikation auf zwei Instanzen am laufen haben.
+3. Prüfen ob ihr mit dem Browser auf die Webseite kommt. Ihr solltet jetzt die Applikation auf zwei Instanzen am Laufen haben.
 
 4. Application Load Balancer erstellen
 
@@ -89,7 +89,7 @@ sudo systemctl enable /home/ec2-user/bid-service.service
 Versucht folgende Fragen zu beantworten:
 
 - Was passiert wenn ihr ein Gebot abgibt?
-- Habt ihr das gleiche "Highest Bid" bei beiden Webseites? Warum nicht?
+- Habt ihr das gleiche "Highest Bid" bei beiden Webseiten? Warum nicht?
 
 Dieses Problem wird in der Bonus Übung (Redis) gelöst.
 
@@ -112,7 +112,7 @@ Beobachtet was passiert, wenn ihr Last generiert und die Last wieder zurück geh
 
 ## 5. Bonus: Redis
 
-Das Load Balancing müsste nun funkionieren, aber die Anwendungen haben keine gemeinsame Datenbank und speichern die Daten zur Zeit lokal im Memory. Ziel dieser Übung ist es, dass die Bid App die Daten in eine gemeinsame Redis Datenbank speichert.
+Das Load Balancing müsste nun funktionieren, aber die Anwendungen haben keine gemeinsame Datenbank und speichern die Daten zur Zeit lokal im Memory. Ziel dieser Übung ist es, dass die Bid App die Daten in eine gemeinsame Redis Datenbank speichert.
 
 Bei der Bid App kann über eine Umgebungsvariable gesteuert werden, welche Datenbank verwendet werden soll. Siehe https://github.com/dsi-engineering-ag/kubernetes-hands-on/blob/main/sampleapp/docker-compose.yml
 
@@ -128,16 +128,16 @@ nc -v YOUR-REDIS-CLUSTER.cache.amazonaws.com 6379
 # PING eingeben und Enter --> Als Antwort kommt PONG
 ```
 
-Die Bid App könnt ihr mit diesen Parameter starten, damit eine Verbindung zum Redis Cluster hergestellt wird.
+Die Bid App könnt ihr mit diesen Parametern starten, damit eine Verbindung zum Redis Cluster hergestellt wird.
 
 ```sh
 docker run -e REDIS_HOST=YOUR-REDIS-CLUSTER.cache.amazonaws.com -p 80:80 -d ghcr.io/dsi-engineering-ag/kubernetes-hands-on-sampleapp:latest
 ```
 
-Wenn ihr die Verbindung erfolgreich getestet habt, könnt ihr die Datei `bid-service.service` anpassen, damit die Anwendung beim Start eine Verbindungs zum Redis Cluster herstellt.
+Wenn ihr die Verbindung erfolgreich getestet habt, könnt ihr die Datei `bid-service.service` anpassen, damit die Anwendung beim Start eine Verbindung zum Redis Cluster herstellt.
 Zur Kontrolle den Server einfach kurz neustarten.
 
 Danach könnt ihr ein neues AMI und eine neue Launch Configuration erstellen.
-Die neue Launch Configuration müsst ihr in der Auto Scaling Group entsprechened eintragen.
+Die neue Launch Configuration müsst ihr in der Auto Scaling Group entsprechend eintragen.
 Kontrolliert, dass sowohl der Redis Cluster aber auch die EC2 Instanzen in unterschiedlichen Availability Zones laufen
 Nun solltet ihr eine hochverfügbare Bid App haben die automatisch hoch und runter skaliert und die Gebote im Redis Cluster speichert.
