@@ -183,7 +183,7 @@ INFO Done
 
 ## Optional: Übung 6 - Fehler suchen (Troubleshooting)
 
-Bearbeite die folgenden Situationen und notiere jeweils den Loesungsbefehl:
+Bearbeite die folgenden Situationen und notiere jeweils den Loesungsbefehl.
 
 1. `webfsd: command not found`
 

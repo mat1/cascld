@@ -132,6 +132,8 @@ INFO Done
 EOF
 ```
 
+Oder mit einem Texteditor / `vi`.
+
 2. Zaehle alle Zeilen mit `ERROR` in `logs.txt` und gib nur die Anzahl aus.
 
 ```sh
