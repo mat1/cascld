@@ -15,7 +15,7 @@ AmazonElastiCacheFullAccess
 AWSCloudTrail_ReadOnlyAccess
 Neue Policy erstellen `cas-limit-instance-type.json` und der Gruppe zuweisen
 
-6. Create Access Key für neuen AWS User
+6. Create Access Key für neuen AWS User (aws login genügt)
 
 7. Update `~/.aws/credentials`
 

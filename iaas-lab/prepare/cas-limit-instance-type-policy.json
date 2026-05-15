@@ -2,25 +2,36 @@
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Sid": "DenyNonLabEC2InstanceTypes",
       "Effect": "Deny",
       "Action": "ec2:RunInstances",
       "Resource": "*",
       "Condition": {
         "ForAnyValue:StringNotLike": {
-          "ec2:InstanceType": ["t1.micro", "t2.nano", "t2.micro", "t3.nano", "t3.micro"]
+          "ec2:InstanceType": [
+            "t1.micro",
+            "t2.nano",
+            "t2.micro",
+            "t3.nano",
+            "t3.micro"
+          ]
         }
       }
     },
     {
+      "Sid": "DenyReservedInstances",
       "Effect": "Deny",
       "Action": [
         "ec2:DescribeReservedInstances",
         "ec2:ModifyReservedInstances",
-        "ec2:PurchaseReservedInstancesOffering"
+        "ec2:PurchaseReservedInstancesOffering",
+        "ec2:PurchaseReservedInstancesOffering",
+        "ec2:AcceptReservedInstancesExchangeQuote"
       ],
       "Resource": "*"
     },
     {
+      "Sid": "DenyReservedElastiCache",
       "Effect": "Deny",
       "Action": [
         "elasticache:DescribeReservedCacheNodesOfferings",
@@ -29,8 +40,68 @@
       "Resource": "*"
     },
     {
+      "Sid": "DenyExpensiveNetworking",
+      "Effect": "Deny",
+      "Action": [
+        "ec2:CreateNatGateway",
+        "ec2:CreateTransitGateway",
+        "ec2:CreateTransitGateway*",
+        "ec2:CreateVpnConnection",
+        "ec2:CreateVpnGateway",
+        "ec2:CreateCustomerGateway",
+        "ec2:AllocateAddress"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenySpotFleetCapacityAndHosts",
+      "Effect": "Deny",
+      "Action": [
+        "ec2:RequestSpotInstances",
+        "ec2:RequestSpotFleet",
+        "ec2:CreateFleet",
+        "ec2:CreateCapacityReservation",
+        "ec2:ModifyCapacityReservation",
+        "ec2:AllocateHosts",
+        "ec2:PurchaseHostReservation"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyLargeVolumes",
+      "Effect": "Deny",
+      "Action": "ec2:CreateVolume",
+      "Resource": "*",
+      "Condition": {
+        "NumericGreaterThan": {
+          "ec2:VolumeSize": "30"
+        }
+      }
+    },
+    {
+      "Sid": "DenyLargeElastiCacheNodeTypes",
+      "Effect": "Deny",
+      "Action": [
+        "elasticache:CreateCacheCluster",
+        "elasticache:CreateReplicationGroup"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringNotEqualsIfExists": {
+          "elasticache:CacheNodeType": [
+            "cache.t2.micro",
+            "cache.t3.micro"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "AllowCertificateListing",
       "Effect": "Allow",
-      "Action": ["iam:ListServerCertificates", "acm:ListCertificates"],
+      "Action": [
+        "iam:ListServerCertificates",
+        "acm:ListCertificates"
+      ],
       "Resource": "*"
     }
   ]

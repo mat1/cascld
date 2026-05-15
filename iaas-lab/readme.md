@@ -117,7 +117,7 @@ Das Load Balancing müsste nun funktionieren, aber die Anwendungen haben keine g
 Bei der Bid App kann über eine Umgebungsvariable gesteuert werden, welche Datenbank verwendet werden soll. Siehe https://github.com/dsi-engineering-ag/kubernetes-hands-on/blob/main/sampleapp/docker-compose.yml
 
 Um Redis in der AWS Cloud zu betreiben, könnt ihr z.B. Amazon ElastiCache verwenden https://aws.amazon.com/de/elasticache/
-Dabei müsst ihr beim Erstellen **Redis OSS**, **Design your own cache** und **cache.t2.micro** als Node type wählen.
+Dabei müsst ihr beim Erstellen **Redis OSS**, **Node-based-cluster**, **Cluster cache** und **cache.t3.micro** als Node type wählen.
 
 Zudem könnt ihr `Encryption at Transit` noch deaktivieren.
 
