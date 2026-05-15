@@ -1,6 +1,14 @@
 #!/bin/bash
+set -euo pipefail
 
-# List of user names
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <password>"
+  exit 1
+fi
+
+password="$1"
+group_name="cas"
+
 user_names=(
   "cas-us-east-1"
   "cas-us-east-2"
@@ -17,17 +25,23 @@ user_names=(
   "cas-sa-east-1"
 )
 
-# Iterate over user names
+if aws --no-cli-auto-prompt iam get-group --group-name "$group_name" >/dev/null 2>&1; then
+  echo "Group already exists: $group_name"
+else
+  aws --no-cli-auto-prompt iam create-group --group-name "$group_name" >/dev/null
+  echo "Created group: $group_name"
+fi
+
 for user_name in "${user_names[@]}"; do
-    # Create IAM user
-    aws iam create-user --user-name "$user_name"
+  aws --no-cli-auto-prompt iam create-user --user-name "$user_name" >/dev/null
 
-    # Add user to the "CAS" group
-    aws iam add-user-to-group --user-name "$user_name" --group-name "CAS"
+  aws --no-cli-auto-prompt iam add-user-to-group \
+    --user-name "$user_name" \
+    --group-name "$group_name"
 
-    # Create login profile for the user with password
-    aws iam create-login-profile --user-name "$user_name" --password "PASSWORD123"
+  aws --no-cli-auto-prompt iam create-login-profile \
+    --user-name "$user_name" \
+    --password "$password" >/dev/null
 
-    # Output success message
-    echo "Created user: $user_name"
+  echo "Created user: $user_name"
 done
