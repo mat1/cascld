@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -euo pipefail
+
+account_region="${AWS_ACCOUNT_REGION:-us-east-1}"
+
 regions=(
   us-east-1
   us-east-2
@@ -17,7 +21,18 @@ regions=(
 )
 
 for region in "${regions[@]}"; do
+  status="$(aws account list-regions \
+    --region "$account_region" \
+    --region-opt-status-contains ENABLED ENABLED_BY_DEFAULT ENABLING \
+    --query "Regions[?RegionName=='$region'].RegionOptStatus | [0]" \
+    --output text)"
+
+  if [[ "$status" != "None" ]]; then
+    echo "Region $region already $status."
+    continue
+  fi
+
   echo "Enabling region $region..."
-  aws enable-region --region-name "$region"
-  echo "Region $region enabled."
+  aws account enable-region --region "$account_region" --region-name "$region"
+  echo "Region $region enable requested."
 done
