@@ -117,27 +117,29 @@ Das Load Balancing müsste nun funktionieren, aber die Anwendungen haben keine g
 Bei der Bid App kann über eine Umgebungsvariable gesteuert werden, welche Datenbank verwendet werden soll. Siehe https://github.com/dsi-engineering-ag/kubernetes-hands-on/blob/main/sampleapp/docker-compose.yml
 
 Um Redis in der AWS Cloud zu betreiben, könnt ihr z.B. Amazon ElastiCache verwenden https://aws.amazon.com/de/elasticache/
-Dabei müsst ihr beim Erstellen **Redis OSS**, **Node-based-cluster**, **Cluster cache** und **cache.t3.micro** als Node type wählen.
+Wichtig: Die Bid App verwendet einen normalen Redis Client und unterstützt kein Redis Cluster Sharding. Erstellt deshalb einen ElastiCache for Redis OSS Cache mit **Cluster mode disabled** und verwendet später den **Primary Endpoint**.
+
+Wählt beim Erstellen z.B. **Redis OSS**, **Cluster mode disabled** und **cache.t3.micro** als Node type.
 
 Zudem könnt ihr `Encryption at Transit` noch deaktivieren.
 
-Mithilfe von Netcat `nc` könnt ihr die Verbindung von der EC2 Instanz zu eurem Redis Cluster testen:
+Mithilfe von Netcat `nc` könnt ihr die Verbindung von der EC2 Instanz zu eurem Redis Endpoint testen:
 
 ```sh
-nc -v YOUR-REDIS-CLUSTER.cache.amazonaws.com 6379
+nc -v YOUR-REDIS-PRIMARY-ENDPOINT.cache.amazonaws.com 6379
 # PING eingeben und Enter --> Als Antwort kommt PONG
 ```
 
-Die Bid App könnt ihr mit diesen Parametern starten, damit eine Verbindung zum Redis Cluster hergestellt wird.
+Die Bid App könnt ihr mit diesen Parametern starten, damit eine Verbindung zu Redis hergestellt wird.
 
 ```sh
-docker run -e REDIS_HOST=YOUR-REDIS-CLUSTER.cache.amazonaws.com -p 80:80 -d ghcr.io/dsi-engineering-ag/kubernetes-hands-on-sampleapp:latest
+docker run -e REDIS_HOST=YOUR-REDIS-PRIMARY-ENDPOINT.cache.amazonaws.com -p 80:80 -d ghcr.io/dsi-engineering-ag/kubernetes-hands-on-sampleapp:latest
 ```
 
-Wenn ihr die Verbindung erfolgreich getestet habt, könnt ihr die Datei `bid-service.service` anpassen, damit die Anwendung beim Start eine Verbindung zum Redis Cluster herstellt.
+Wenn ihr die Verbindung erfolgreich getestet habt, könnt ihr die Datei `bid-service.service` anpassen, damit die Anwendung beim Start eine Verbindung zu Redis herstellt. Fügt dazu bei `docker create` die Umgebungsvariable `-e REDIS_HOST=YOUR-REDIS-PRIMARY-ENDPOINT.cache.amazonaws.com` hinzu.
 Zur Kontrolle den Server einfach kurz neustarten.
 
 Danach könnt ihr ein neues AMI und eine neue Launch Configuration erstellen.
 Die neue Launch Configuration müsst ihr in der Auto Scaling Group entsprechend eintragen.
-Kontrolliert, dass sowohl der Redis Cluster aber auch die EC2 Instanzen in unterschiedlichen Availability Zones laufen
-Nun solltet ihr eine hochverfügbare Bid App haben die automatisch hoch und runter skaliert und die Gebote im Redis Cluster speichert.
+Kontrolliert, dass sowohl Redis als auch die EC2 Instanzen in unterschiedlichen Availability Zones laufen
+Nun solltet ihr eine hochverfügbare Bid App haben die automatisch hoch und runter skaliert und die Gebote in Redis speichert.
