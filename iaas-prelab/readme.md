@@ -95,32 +95,32 @@ index.html:    <h1>Welcome CAS Cloud</h1>
 
 > Befehle: apt oder brew
 
-1. Installiere webfs (einfacher Webserver): https://linux.bytesex.org/misc/webfs.html
+1. Installiere miniserve (einfacher Webserver): https://github.com/svenstaro/miniserve
 
 Linux (WSL/Ubuntu):
 
 ```sh
 sudo apt update
-sudo apt install webfs
+sudo apt install miniserve
 ```
 
 Mac (Homebrew):
 
 ```sh
-brew install webfs
+brew install miniserve
 ```
 
 ## Übung 3 - Webserver & curl
 
-> Befehle: webfsd, curl
+> Befehle: miniserve, curl
 
-1. Starte webfs im Ordner `casprelab`
+1. Starte miniserve im Ordner `casprelab`
 
 ```sh
-webfsd -F -p 8080 -d -f index.html -r .
+miniserve . --index index.html --port 8080
 ```
 
-Bonus: Schaue in der webfs Dokumentation nach, was die einzelnen Flags (-F, -p) für einen Effekt haben.
+Bonus: Schaue in der miniserve Dokumentation nach, was die einzelnen Flags (`--index`, `--port`) fuer einen Effekt haben.
 
 2. Öffne die Webseite im Browser http://localhost:8080/
 
@@ -171,7 +171,7 @@ INFO Done
 
 > Befehle: ps, lsof, kill
 
-1. Starte `webfsd` wie in Uebung 3 auf Port `8080`.
+1. Starte `miniserve` wie in Uebung 3 auf Port `8080`.
 
 2. Finde den Prozess, der auf Port `8080` lauscht.
 
@@ -185,7 +185,7 @@ INFO Done
 
 Bearbeite die folgenden Situationen und notiere jeweils den Loesungsbefehl.
 
-1. `webfsd: command not found`
+1. `miniserve: command not found`
 
 2. `Address already in use` beim Start auf Port `8080`
 
@@ -193,7 +193,7 @@ Bearbeite die folgenden Situationen und notiere jeweils den Loesungsbefehl.
 
 4. Du bist im falschen Ordner und `index.html` wird nicht gefunden
 
-5. Bonus: Verwende `man webfsd` oder `tldr`, um zwei Flags aus der Webserver-Konfiguration zu erklaeren
+5. Bonus: Verwende `miniserve --help` oder `tldr`, um zwei Flags aus der Webserver-Konfiguration zu erklaeren
 
 ## Weitere Ressourcen & Übungen
 
