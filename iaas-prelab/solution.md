@@ -65,19 +65,19 @@ grep -R "Welcome" *.html
 
 ## Übung 2 - Software installieren
 
-1. Installiere miniserve
+1. Installiere webfs
 
 Linux (WSL/Ubuntu):
 
 ```sh
 sudo apt update
-sudo apt install miniserve
+sudo apt install webfs
 ```
 
 Mac (Homebrew):
 
 ```sh
-brew install miniserve
+brew install webfs
 ```
 
 ## Übung 3 - Webserver & curl
@@ -86,7 +86,7 @@ brew install miniserve
 
 ```sh
 cd casprelab
-miniserve . --index index.html --port 8080
+webfsd -F -p 8080 -d -f index.html -r .
 ```
 
 2. Öffne die Webseite im Browser http://localhost:8080/
@@ -154,10 +154,10 @@ echo "INFO Finished" >> info.txt
 
 ## Übung 5 - Prozesse & Ports
 
-1. Starte `miniserve` wie in Uebung 3 auf Port `8080`.
+1. Starte `webfsd` wie in Uebung 3 auf Port `8080`.
 
 ```sh
-miniserve . --index index.html --port 8080
+webfsd -F -p 8080 -d -f index.html -r .
 ```
 
 2. Finde den Prozess, der auf Port `8080` lauscht.
@@ -187,14 +187,14 @@ Wenn kein Output kommt, ist der Port frei.
 
 ## Übung 6 - Fehler suchen (Troubleshooting)
 
-1. `miniserve: command not found`
+1. `webfsd: command not found`
 
 ```sh
 # Linux
-sudo apt install miniserve
+sudo apt install webfs
 
 # Mac
-brew install miniserve
+brew install webfs
 ```
 
 2. `Address already in use` beim Start auf Port `8080`
@@ -207,7 +207,7 @@ kill <PID>
 Alternative: anderen Port waehlen.
 
 ```sh
-miniserve . --index index.html --port 8081
+webfsd -F -p 8081 -d -f index.html -r .
 ```
 
 3. `curl: (7) Failed to connect to localhost port 8080`
@@ -217,7 +217,7 @@ miniserve . --index index.html --port 8081
 lsof -i :8080
 
 # Falls nicht: starten
-miniserve . --index index.html --port 8080
+webfsd -F -p 8080 -d -f index.html -r .
 ```
 
 4. Du bist im falschen Ordner und `index.html` wird nicht gefunden
@@ -229,12 +229,12 @@ cd ~/casprelab
 ls -l index.html
 ```
 
-5. Bonus: Verwende `miniserve --help` oder `tldr`, um zwei Flags aus der Webserver-Konfiguration zu erklaeren
+5. Bonus: Verwende `man webfsd` oder `tldr`, um zwei Flags aus der Webserver-Konfiguration zu erklaeren
 
 Beispiel:
 
-- `--port 8080`: setzt den Port auf `8080`
-- `--index index.html`: liefert `index.html` als Standarddatei aus
+- `-p 8080`: setzt den Port auf `8080`
+- `-f index.html`: liefert `index.html` als Standarddatei aus
 
 ## Weitere Ressourcen & Übungen
 
