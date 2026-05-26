@@ -22,7 +22,7 @@ wsl --install
 
 ## Mac
 
-Mac User koennen fuer die Uebungen das Mac Terminal verwenden.
+Mac User koennen für die Übungen das Mac Terminal verwenden.
 
 ## Hilfe zu Unix Befehlen
 
@@ -120,7 +120,7 @@ brew install miniserve
 miniserve . --index index.html --port 8080
 ```
 
-Bonus: Schaue in der miniserve Dokumentation nach, was die einzelnen Flags (`--index`, `--port`) fuer einen Effekt haben.
+Bonus: Schaue in der miniserve Dokumentation nach, was die einzelnen Flags (`--index`, `--port`) für einen Effekt haben.
 
 2. Öffne die Webseite im Browser http://localhost:8080/
 
@@ -171,19 +171,19 @@ INFO Done
 
 > Befehle: ps, lsof, kill
 
-1. Starte `miniserve` wie in Uebung 3 auf Port `8080`.
+1. Starte `miniserve` wie in Übung 3 auf Port `8080`.
 
 2. Finde den Prozess, der auf Port `8080` lauscht.
 
 3. Stoppe genau diesen Prozess mit `kill`.
 
-4. Pruefe mit `lsof -i :8080`, dass auf Port `8080` kein Prozess mehr laeuft.
+4. Prüfe mit `lsof -i :8080`, dass auf Port `8080` kein Prozess mehr laeuft.
 
 5. Bonus: Was ist der Unterschied zwischen `kill` und `kill -9`?
 
 ## Optional: Übung 6 - Fehler suchen (Troubleshooting)
 
-Bearbeite die folgenden Situationen und notiere jeweils den Loesungsbefehl.
+Bearbeite die folgenden Situationen und notiere jeweils den Lösungsbefehl.
 
 1. `miniserve: command not found`
 
