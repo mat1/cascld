@@ -87,21 +87,18 @@
       ],
       "Resource": "*",
       "Condition": {
-        "StringNotEqualsIfExists": {
-          "elasticache:CacheNodeType": [
-            "cache.t2.micro",
-            "cache.t3.micro"
-          ]
+        "Null": {
+          "elasticache:CacheNodeType": "false"
+        },
+        "StringNotEquals": {
+          "elasticache:CacheNodeType": ["cache.t2.micro", "cache.t3.micro"]
         }
       }
     },
     {
       "Sid": "AllowCertificateListing",
       "Effect": "Allow",
-      "Action": [
-        "iam:ListServerCertificates",
-        "acm:ListCertificates"
-      ],
+      "Action": ["iam:ListServerCertificates", "acm:ListCertificates"],
       "Resource": "*"
     }
   ]
