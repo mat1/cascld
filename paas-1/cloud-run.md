@@ -7,8 +7,8 @@ Bei dieser Übung wir die Bid App als Docker Container mittels Google Cloud Run 
 
 ## 1. Dockerimage in die Cloud Registry Pushen
 
-Damit eine Anwendung über Google Cloud Run deployt werden kann, muss das Dockerimage in der Google Cloud Registry vorhanden sein.
-Wie man ein Dockerimage in die Google Cloud Registry pusht ist hier beschrieben https://cloud.google.com/container-registry/docs/pushing-and-pulling
+Damit eine Anwendung über Google Cloud Run deployt werden kann, muss das Dockerimage in der Google Cloud Artifact Registry vorhanden sein.
+Wie man ein Dockerimage in die Google Cloud Registry pusht ist hier beschrieben https://docs.cloud.google.com/artifact-registry/docs/docker/pushing-and-pulling
 
 1. Google Cloud Shell aktivieren
 2. Docker Authentification konfigurieren
@@ -35,10 +35,10 @@ docker push gcr.io/PROJECTID/bid-app
 ## 2. Google Cloud Run Service erstellen
 
 1. Suche nach `Cloud Run`
-2. Create service
+2. Create service / Deploy container
 3. Container image url `gcr.io/PROJECTID/bid-app`
 4. Service name `bid-app`
-5. Allow unauthenticated invocations aktivieren
+5. Allow public access aktivieren
 6. Region `europe-west6`
 
 Nach dem Erstellen des Services sollte die Anwendung über das Internet erreichbar sein.
