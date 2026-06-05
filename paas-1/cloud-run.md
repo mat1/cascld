@@ -80,6 +80,3 @@ Die Preisberechnung basierd auf folgenden Angaben:
 - Pro Tag wird die Webseite 400'000 mal aufgerufen
 - Pro Tag werden 10'000 Gebote abgegeben
 
-## Unofficial FAQ for Google Cloud Run
-
-https://github.com/ahmetb/cloud-run-faq
