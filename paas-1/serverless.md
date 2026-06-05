@@ -15,10 +15,19 @@ Erstelle ein neues Google Cloud Projekt mit dem Namen `cascld`.
 Die Daten in dieser Übung werden in einem Google Datastore (NoSQL Datenbank) gespeichert, weil dies einfacher ist, als der Zugriff auf Redis.
 
 1. Suche nach Datastore
-2. Erstelle ein Google Datastore (Firestore mit Datastore-Kompatibilität / Firestore with Datastore compatibility)
-3. Location `europe-west6` auswählen
+2. Erstelle ein Google Datastore
+3. Wähle `Standard edition` und `Firestore mit Datastore-Kompatibilität / Firestore with Datastore compatibility`
+4. Location `europe-west6` auswählen
 
-## 3. Google Functions erstellen
+## 3. Service account berechtigen
+
+Google Functions verwenden einen Service Account für den Zugriff auf GCP Ressourcen. Diesem Account muss man Berechtigung für den Datastore geben.
+
+1. Suche nach Service Accounts
+2. Wähle den "Default compute service account" e.g. PROJECTNUMBER-compute@developer.gserviceaccount.com
+3. Im Permission Tab -> Manage Access -> Role `Cloud Datastore User` zuweisen
+
+## 4. Google Functions erstellen
 
 In dieser Übung werden zwei Funktionen erstellt:
 
@@ -28,11 +37,11 @@ In dieser Übung werden zwei Funktionen erstellt:
 ### Get Highest Bid Function
 
 1. Suche nach Cloud Run Function
-2. Erstelle einen Service / Funktion mit dem Namen `get-highest-bid`
+2. Erstelle eine Node.js Funktion mit dem Namen `get-highest-bid`
 3. Wähle `Use an inline editor to create a function`
 4. Region: `europe-west6` Schweiz :)
-5. `Allow unauthenticated invocations` und `HTTPS` als Trigger type
-6. Runtime: `Node.js 22`
+5. Runtime: `Node.js 22`
+6. Wähle: `Allow public access` und `Allow direct access to your service from the Internet`
 7. Der Quellcode für die Funktion ist unten aufgeführt:
 
 **index.js**
@@ -144,7 +153,7 @@ Die Funktion sollte folgenden Output generieren:
 { "bid": 2 }
 ```
 
-## 4. Bid Webseite
+## 5. Bid Webseite
 
 Die beiden Google Cloud Functions sollten nun über das Internet erreichbar sein. Nun gehts darum, die Bid Webseite im Internet verfügbar zu machen. Die Bid Webseite greift über HTTP Requests auf die beiden Funktionen zu.
 
@@ -176,7 +185,7 @@ Die Bid App sollte nun über das Internet erreichbar sein.
 
 ![bucket](images/bucket.png "Bucket")
 
-## Bonus: 5. Pricing
+## Bonus: 6. Pricing
 
 Finde heraus, wie viel es pro Monat kostet, die Bid App in dieser Art zu betreiben.
 

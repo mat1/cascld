@@ -6,11 +6,9 @@
 ```
 Hallo zusammen
 
-Am Donnerstag findet der PaaS Block 2 + 3 statt. Wir werden am Donnerstag mehrere Übungen auf der Google Cloud Platform (GCP) machen.
+Am Donnerstag findet der PaaS-Block 2 und 3 statt. Dabei werden wir mehrere praktische Übungen auf der Google Cloud Platform (GCP) durchführen.
 
-Dazu benötigt ihr einen Google Account. Wenn ihr euch das erste Mal mit dem Google Account bei der GCP (https://cloud.google.com/) anmeldet, bekommt ihr 300$ Startguthaben.
-
-Für den Fall, dass ihr die 300$ schon aufgebraucht habt oder noch mehr Guthaben möchtet, könnt ihr mit der Anleitung unten zusätzlich 50$ beantragen.
+Für die Teilnahme benötigt ihr einen Google-Account. Wenn ihr euch erstmals bei der GCP anmeldet (Google Cloud Platform), erhaltet ihr ein Startguthaben von 300 USD. Für die Registrierung wird eine Kredit- oder Debitkarte benötigt. Diese wird nicht belastet, solange ihr kein kostenpflichtiges Konto aktiviert und das Startguthaben von 300 USD nicht aufgebraucht habt.
 
 Bei Fragen einfach melden.
 
