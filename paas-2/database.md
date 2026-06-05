@@ -64,6 +64,8 @@ Die Dokumentation wie von Cloud Run auf Cloud SQL zugegriffen werden kann findet
 
 Eine Dokumentation der Cloud Run Befehle findet ihr hier: https://cloud.google.com/sdk/gcloud/reference/run
 
+> Ähnlich wie beim Zugriff auf den Datastore müsst ihr dem Service Account Zugriff auf Cloud SQL geben (roles/cloudsql.client).
+
 ## 4. Bonus: Test Failover
 
 Im Schritt 2 haben wir eine hochverfügabe Datenbank erstellt. Nun wollen wir dies auch Testen, um sicher zugehen das unsere Anwendung mit einem Failover umgehen kann.

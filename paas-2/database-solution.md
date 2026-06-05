@@ -8,13 +8,21 @@ Wenn über das UI muss google cloud sql admin noch aktiviert werden.
 gcloud services enable sqladmin.googleapis.com
 ```
 
+Dem Service Account Zugriff auf Cloud SQL geben:
+
+```sh
+gcloud projects add-iam-policy-binding cascld-498506 \
+  --member="serviceAccount:639540411093-compute@developer.gserviceaccount.com" \
+  --role="roles/cloudsql.client"
+```
+
 ```sh
 gcloud run deploy bid-app-db \
-  --image gcr.io/cascld-463507/bid-app \
+  --image gcr.io/cascld-498506/bid-app \
   --region=europe-west6 \
   --platform=managed \
-  --add-cloudsql-instances cascld-463507:europe-west6:bid-db \
-  --set-env-vars MYSQL_UNIX_SOCKET="/cloudsql/cascld-463507:europe-west6:bid-db",MYSQL_PASSWORD="password123" \
+  --add-cloudsql-instances cascld-498506:europe-west6:bid-db \
+  --set-env-vars MYSQL_UNIX_SOCKET="/cloudsql/cascld-498506:europe-west6:bid-db",MYSQL_PASSWORD="password123" \
   --allow-unauthenticated
 ```
 
