@@ -19,15 +19,7 @@ Die Daten in dieser Übung werden in einem Google Datastore (NoSQL Datenbank) ge
 3. Wähle `Standard edition` und `Firestore mit Datastore-Kompatibilität / Firestore with Datastore compatibility`
 4. Location `europe-west6` auswählen
 
-## 3. Service account berechtigen
-
-Google Functions verwenden einen Service Account für den Zugriff auf GCP Ressourcen. Diesem Account muss man Berechtigung für den Datastore geben.
-
-1. Suche nach Service Accounts
-2. Wähle den "Default compute service account" e.g. PROJECTNUMBER-compute@developer.gserviceaccount.com
-3. Im Permission Tab -> Manage Access -> Role `Cloud Datastore User` zuweisen
-
-## 4. Google Functions erstellen
+## 3. Google Functions erstellen
 
 In dieser Übung werden zwei Funktionen erstellt:
 
@@ -86,7 +78,19 @@ functions.http("getHighestBid", async (req, res) => {
 ```
 
 9. Entry point: `getHighestBid`
-10. Teste die Funktion z.B. mit `curl YOUR-CLOUD-FUNCTION-URL`
+
+### 2.1 Service Account berechtigen
+
+Google Cloud Functions verwenden einen Service Account, um auf GCP-Ressourcen zuzugreifen. Damit die Funktion Datastore verwenden kann, muss diesem Service Account die entsprechende Berechtigung zugewiesen werden.
+
+1. Suche in der Google Cloud Console nach `Service Accounts`.
+2. Wähle den `Default compute service account`, z.B. `PROJECTNUMBER-compute@developer.gserviceaccount.com`.
+3. Wechsle zum Tab `Permissions` und wähle `Manage Access`.
+4. Weise dem Service Account die Rolle `Cloud Datastore User` zu.
+
+### 2.2 Test
+
+Teste die Funktion z.B. mit `curl YOUR-CLOUD-FUNCTION-URL`
 
 Die Funktion sollte folgendes zurückgeben:
 
@@ -153,7 +157,7 @@ Die Funktion sollte folgenden Output generieren:
 { "bid": 2 }
 ```
 
-## 5. Bid Webseite
+## 4. Bid Webseite
 
 Die beiden Google Cloud Functions sollten nun über das Internet erreichbar sein. Nun gehts darum, die Bid Webseite im Internet verfügbar zu machen. Die Bid Webseite greift über HTTP Requests auf die beiden Funktionen zu.
 
@@ -185,7 +189,7 @@ Die Bid App sollte nun über das Internet erreichbar sein.
 
 ![bucket](images/bucket.png "Bucket")
 
-## Bonus: 6. Pricing
+## Bonus: 5. Pricing
 
 Finde heraus, wie viel es pro Monat kostet, die Bid App in dieser Art zu betreiben.
 
