@@ -1,7 +1,7 @@
 # Google Cloud SQL
 
 Das Management möchte eine History aller Gebote haben, um Auswertungen zu machen.
-Darum hat sich das Bid App Team entschieden, die Daten neu in einer Relationalen Datenbank zu speicheren.
+Darum hat sich das Bid App Team entschieden, die Daten neu in einer relationalen Datenbank zu speichern.
 Dazu soll Google Cloud SQL verwendet werden: https://cloud.google.com/sql
 
 ## 1. Datenbank erstellen
@@ -13,7 +13,7 @@ gcloud services enable sql-component.googleapis.com
 gcloud services enable sqladmin.googleapis.com
 
 # Datenbank erstellen
-# High Availabilty - Automatic failover to another zone within your selected region. Recommended for production instances. Increases cost.
+# High Availability - Automatic failover to another zone within your selected region. Recommended for production instances. Increases cost.
 gcloud sql instances create bid-db --tier=db-f1-micro --region=europe-west6 --availability-type=REGIONAL --enable-bin-log
 
 # Datenbank Root Account
@@ -43,7 +43,7 @@ source dump.sql;
 show tables;
 ```
 
-`show tables` sollte folgendes Resultat zurück geben:
+`show tables` sollte folgendes Resultat zurückgeben:
 
 ```sh
 +------------------+
@@ -55,22 +55,22 @@ show tables;
 
 ## 3. Bid App mit Datenbank verbinden
 
-Erstellt eine neuer Cloud Run Service basierend auf dem Bid App Dockerimage z.B. `bid-app-db` welcher die Daten in der zuvor erstellten MySQL Datenbank speichert.
+Erstellt einen neuen Cloud Run Service basierend auf dem Bid App Docker-Image z.B. `bid-app-db`, welcher die Daten in der zuvor erstellten MySQL-Datenbank speichert.
 Verwendet für das Erstellen des Cloud Run Services die Google Cloud Shell.
 
-Damit die Bid App eine Verbindung zur Datenbank herstellen kann, müssen folgende zwei Umgebungsvariabeln gesetzt sein: `MYSQL_UNIX_SOCKET` und `MYSQL_PASSWORD`.
+Damit die Bid App eine Verbindung zur Datenbank herstellen kann, müssen folgende zwei Umgebungsvariablen gesetzt sein: `MYSQL_UNIX_SOCKET` und `MYSQL_PASSWORD`.
 
-Die Dokumentation wie von Cloud Run auf Cloud SQL zugegriffen werden kann findet ihr hier: https://cloud.google.com/sql/docs/mysql/connect-run
+Die Dokumentation, wie von Cloud Run auf Cloud SQL zugegriffen werden kann, findet ihr hier: https://cloud.google.com/sql/docs/mysql/connect-run
 
 Eine Dokumentation der Cloud Run Befehle findet ihr hier: https://cloud.google.com/sdk/gcloud/reference/run
 
-> Ähnlich wie beim Zugriff auf den Datastore müsst ihr dem Service Account Zugriff auf Cloud SQL geben (roles/cloudsql.client).
+> Analog zum Zugriff auf den Datastore in der Cloud Function Übung, müsst ihr dem Cloud Run Service Account Zugriff auf Cloud SQL erlauben (roles/cloudsql.client).
 
 ## 4. Bonus: Test Failover
 
-Im Schritt 2 haben wir eine hochverfügabe Datenbank erstellt. Nun wollen wir dies auch Testen, um sicher zugehen das unsere Anwendung mit einem Failover umgehen kann.
+Im Schritt 2 haben wir eine hochverfügbare Datenbank erstellt. Nun wollen wir dies auch testen, um sicherzugehen, dass unsere Anwendung mit einem Failover umgehen kann.
 
-1. Prüfen ob die Datenbank Instanz hochverfügbar ist
+1. Prüfen, ob die Datenbankinstanz hochverfügbar ist
 
 ```sh
 gcloud sql instances describe bid-db
@@ -84,7 +84,7 @@ Sollte `availabilityType`=`REGIONAL` zurückgeben.
 gcloud sql instances failover bid-db
 ```
 
-3. Prüfe ob die Bid App während dem Failover erreichbar ist z.B. mit Apache Bench oder mit dem Browser
+3. Prüfe, ob die Bid App während des Failovers erreichbar ist z.B. mit Apache Bench oder mit dem Browser
 
 Mehr zum Thema Failover und HA-Setup unter: https://cloud.google.com/sql/docs/mysql/high-availability
 
@@ -98,6 +98,6 @@ In dieser Übung geht es darum, ein Backup der Datenbank zu erstellen und wieder
 
 3. Erhöhe das Höchstgebot
 
-4. Stelle die Datenbank vom zuvor erstellen Backup wieder her
+4. Stelle die Datenbank vom zuvor erstellten Backup wieder her
 
 Nun sollte das Höchstgebot wieder den Wert von Schritt 1 haben.
